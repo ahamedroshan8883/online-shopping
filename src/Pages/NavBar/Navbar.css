@@ -1,0 +1,16 @@
+.nav-bar{
+    height: 7rem;
+    width: 100vw;
+    max-width: 100rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    background-image: linear-gradient(to bottom, #ff6f91, #f08ab8, #f4bee7, #f2e1fa, #ffffff);
+    align-items: center;
+}
+.heading{
+    margin-left: 3rem;
+}
+.navlistItem{
+    margin: 1rem;
+}
