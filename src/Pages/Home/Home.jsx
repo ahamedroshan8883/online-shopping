@@ -1,6 +1,7 @@
 import React from "react"
 import '../Home/Home.css'
 import fashionimg from '../../assets/homepage-banner-with-bg-removebg-preview.png';
+import Deals from "../Dealsforyou/deals";
 
 
 export default function Home(){
@@ -11,6 +12,7 @@ export default function Home(){
         <span className="large-txt">new 👋 Collections for Every one</span>
         </div>
         <img src={fashionimg} alt="" className="homepageimg"/>
-      </div>
+    </div>
+    <Deals></Deals>
   </>)
 };

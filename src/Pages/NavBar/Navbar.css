@@ -1,4 +1,5 @@
 .nav-bar{
+    position: sticky;
     height: 4rem;
     width: 100vw;
     max-width: 85rem;
@@ -6,6 +7,7 @@
     justify-content: space-between;
     margin: 0 auto;
     align-items: center;
+    background-color: #f5f7eb;
     z-index: 3;
 }
 .heading{
@@ -13,10 +15,4 @@
 }
 .navlistItem{
     margin: 1rem;
-}
-@media screen and (max-width:550px){
-    .nav-bar{
-        background-color: #ff6f91;
-        margin: 0 auto;
-    }
 }

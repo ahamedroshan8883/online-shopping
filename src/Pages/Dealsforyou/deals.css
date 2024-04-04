@@ -1,0 +1,23 @@
+.deals-con{
+    background-color: #ffff;
+    width: 100vw;
+    max-width: 75rem;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+}
+.deals-con .products{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.productlist{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.header{
+    text-align: center;
+}
