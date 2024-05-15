@@ -1,10 +1,11 @@
-import React from "react"
+
 import '../Home/Home.css'
 import fashionimg from '../../assets/homepage-banner-with-bg-removebg-preview.png';
 import Deals from "../Dealsforyou/deals";
 
 
-export default function Home(){
+export default function Home({items}){
+  console.log(items);
   return (<>
     <div id="homepage">
         <div className="content-text">
@@ -13,6 +14,6 @@ export default function Home(){
         </div>
         <img src={fashionimg} alt="" className="homepageimg"/>
     </div>
-    <Deals></Deals>
+    <Deals items={items}></Deals>
   </>)
 };

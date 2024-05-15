@@ -1,0 +1,26 @@
+#mens{
+    height: calc(100vh - 4rem);
+    width: 100vw;
+    max-width: 75rem;
+    margin: 0 auto;
+    overflow-x: hidden;
+    position: relative;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+.product-Con{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3rem;
+    justify-content: center;
+    
+}
+.product{
+    margin:1rem;
+    
+}
+#mens::-webkit-scrollbar {
+    display: none;
+}

@@ -1,7 +1,67 @@
-import React from "react"
+import React, { useState } from "react"
+import Form from 'react-bootstrap/Form';
+import "../Login/login.css"
+import Button from 'react-bootstrap/Button';
+import userServices from "../../services/userServices";
+import {Link} from "react-router-dom";
 
-export default function Login(){
+export default function Login({setUsername}){
+  let [userInput,setUserInput] = useState({email:"",password:""})
+
+  const handleChanges = (e)=>{
+    const {name,value} = e.target;
+    setUserInput({...userInput,[name]:value});
+  } 
+
+  const handleSubmit = (e,user)=>{
+    e.preventDefault();
+    validateUser(user);
+    setUserInput({email:"",password:""})
+    window.history.back();
+  }
+
+  const validateUser = async(user)=>{
+    try{
+        const response = await userServices.login(user)
+        console.log(response.data);
+        const token = response.data
+        let userData = parseJWT(token);
+        console.log(userData);
+        localStorage.setItem('token',token);
+        localStorage.setItem('email',userData.email)
+        localStorage.setItem('username',userData.username)
+        setUsername(localStorage.getItem('username'));
+    }catch(error){
+      console.log(error);
+    }
+  } 
+
+  const parseJWT = (token)=>{
+    if(!token){return};
+    const base64Url = token.split('.')[1];
+    return JSON.parse(window.atob(base64Url));
+  }
   return (<>
-    <h1>Login</h1>
+  <div id="login-form">
+  <div className="login-con">
+  <h1 className="m-3">Login</h1>
+  <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
+        <Form.Group className="m-3" controlId="formGroupEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
+        </Form.Group>
+        <Form.Group className="m-3" controlId="formGroupPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Enter your password" name="password" value={userInput.password} onChange={handleChanges}/>
+        </Form.Group>
+        <div className="button m-3">
+          <Button variant="primary" type="submit">Login</Button>{' '}
+          <Link to='/'><Button variant="danger">Back</Button></Link>{' '}
+        </div>
+        <hr />
+        <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup'>Register here</Link></p>
+      </Form>
+  </div>
+  </div>
   </>)
 };

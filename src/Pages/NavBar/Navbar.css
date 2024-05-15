@@ -1,5 +1,6 @@
 .nav-bar{
     position: sticky;
+    right: 5rem;
     height: 4rem;
     width: 100vw;
     max-width: 85rem;
@@ -7,12 +8,99 @@
     justify-content: space-between;
     margin: 0 auto;
     align-items: center;
-    background-color: #f5f7eb;
+    background-color: #FFF5FF;
     z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .heading{
     margin-left: 3rem;
 }
 .navlistItem{
     margin: 1rem;
+    display: flex;
+    align-items: center;
+}
+.navlist{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+.link:hover{
+    color: #ff6f91;
+}
+.categoryList{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #f5f7eb;
+    position: absolute;
+    padding: 1rem 0.2rem;
+    top: 3rem;
+    border-radius: 1rem;
+}
+.categoryList .link{
+    padding: 1rem;
+    margin: 0 auto;
+}
+.searchList{
+    font-size: 1rem;
+    font-weight: bold;
+    color: rebeccapurple;
+    border-radius: 0.5rem;
+    padding: 2rem 1rem;
+    position: absolute;
+    background-color: #FFF5FF;
+}
+.searchListItems{
+    margin: 0.5rem;
+}
+.search-bar{
+    height: 2.5rem;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 0 15px;
+    width: 25rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: flex;
+    align-items: center;
+}
+.search-Box{
+    width: 22rem;
+    padding: 0px 5px;
+    border: none;
+    height: 100%;
+    background: transparent;
+    outline: none;
+}
+.search-Box::placeholder{
+    color:  #9AAFA7;
+  font-family: "Raleway", sans-serif;
+}
+.userConfig{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #f5f7eb;
+    position: absolute;
+    width: 10rem;
+    padding: 1rem 2rem;
+    top: 3rem;
+    border-radius: 1rem;
+}
+.userConfig .link{
+    padding: 0.5rem;
+    margin: 0 auto;
+}
+.profile-bar{
+    display: flex;
+    flex-direction: column;
+}
+.Brand-name{
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+}
+.subHead{
+    font-size: 1.5rem;
 }

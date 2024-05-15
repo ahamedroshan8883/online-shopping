@@ -8,7 +8,7 @@
 body{
   /* background-image: linear-gradient(to bottom, #ff6f91, #fc97c4, #f4bee7, #f2e1fa, #ffffff);
   background-repeat: no-repeat; */
-  font-family: "Raleway", sans-serif;
+  font-family: "Raleway", sans-serif !important;
   background-color: #f5f7eb;
   background-image: linear-gradient(to bottom, #ff6f91, #fc97c4, #f4bee7, #f5f7eb, #f5f7eb);
   background-repeat: no-repeat;

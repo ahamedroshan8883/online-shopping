@@ -1,10 +1,12 @@
 .deals-con{
-    background-color: #ffff;
+    background-color: #FFF5FF;
     width: 100vw;
     max-width: 75rem;
+    padding: 1rem ;
     margin: 3rem auto;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 .deals-con .products{
     display: flex;

@@ -1,33 +1,29 @@
-import React,{useEffect, useState} from "react" 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "../../redux/productaction";
+import React from "react" 
 import ProductCard from "../Productard/ProductCard";
 import '../Dealsforyou/deals.css'
+import {  useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from "../../redux/reduxAsync/ProductAsyncthunk";
 
-export default function Deals(){
-    let [items,setItems] = useState([]);
-    let dispatch = useDispatch();
-  let products = useSelector(state=>state.productSore)
-
-  const filterfashions = ()=>{
-    const filtereditems = products.products.filter(item=>item.category!=='electronics');
-    console.log(filtereditems);
-    setItems(filtereditems);
-  }
+const Deals = ()=>{
+  let dispatch = useDispatch();
+  let {products,Isloading} = useSelector(state=>state.productsStore);
+    // let productsS = useSelector(state=>state.productsStore);
+    // console.log(productsS);
   useEffect(()=>{
-    dispatch(fetchProduct());
-    filterfashions();
-  },[items])
+    dispatch(fetchProducts())
+  },[])
   return (<>
     <div className="deals-con">
         <h2 className="header">  Deals for you</h2>
       <div className="products">
-        {items.map(item=>
-          <div className="productlist">
-            <ProductCard item={item}></ProductCard>
+        {!Isloading? products.map(product=>
+          <div className="productlist" key={product.id}>
+            <ProductCard product={product}></ProductCard>
           </div>
-            )}
+            ):'Loading...'}
       </div>  
       </div>
   </>)
-};
+}
+export default Deals;
