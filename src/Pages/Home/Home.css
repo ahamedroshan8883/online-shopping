@@ -1,10 +1,10 @@
 #homepage{
     height: calc(100vh - 4rem);
-    width: 100vw;
+    /* width: 100vw; */
     max-width: 75rem;
     margin: 0 auto;
-    overflow: hidden;
     position: relative;
+    overflow-y: hidden;
 }
 
 .homepageimg{
@@ -41,16 +41,20 @@
     background-image: none;
     }
     .homepageimg{
-        right: -3rem;
+        top: 2rem;
+        right: 0rem;
+        height: 30rem;
     }
     .content-text .large-txt{
-        font-size: 2rem;
+        font-size: 0.7rem;
     }
     .content-text{
         color: #f5f7eb;
         background-color: #ff6f91;
-        width: 15rem;
-        border-radius: 4rem;
+        font-size: 0.3rem;
+        padding: 0.5rem 1rem;
+        width: 9rem;
+        border-radius: 0.4rem;
         position: absolute;
         bottom: 0rem;
     }

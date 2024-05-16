@@ -23,7 +23,7 @@ export default function Navbar({userName}){
   let[Ismouse,setIsmouse] = useState(false);
   let [IsvisibleUC,setIsvisibleUC] = useState(false);
   let[searchName,setSearchName] = useState('');
-  console.log(userName);
+  console.log(searchName);
 
   const handleSearch =()=>{
     const filterProducts = products.filter(product=>product.title.toLowerCase().includes(searchName)
