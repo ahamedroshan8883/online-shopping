@@ -15,7 +15,7 @@ import Productviews from './Pages/ProductView/Productview';
 import { useEffect, useState } from 'react';
 import Logout from './Pages/Logout/Logout';
 import Signup from './Pages/signup/Signup';
-import { Cart } from './Pages/Cart/cart';
+import Cart from './Pages/Cart/Cart';
 
 function App() {
   let[userName,setUsername] = useState('');

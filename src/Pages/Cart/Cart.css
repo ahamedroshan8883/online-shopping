@@ -1,0 +1,4 @@
+#cart-container{
+    width : 100vw;
+    height: calc(100vh - 4rem);
+}

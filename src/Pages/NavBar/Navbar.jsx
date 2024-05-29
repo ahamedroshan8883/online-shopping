@@ -62,7 +62,7 @@ export default function Navbar({userName}){
               <Link to="/categories/women's clothing" className="link"><FaFemale />&nbsp;Women's clothing</Link>
               <Link to="/categories/jewelery" className="link"><GiJewelCrown />&nbsp;Jewellery</Link>
           </div>:null}
-          <Link className="link"><IoBag />&nbsp;Cart</Link>
+          <Link className="link" to="/Cart"><IoBag />&nbsp;Cart</Link>
         </div>
         <div className="navlist">
             <Link className="navlistItem link" to="/">Home&nbsp;<FaHome/></Link>
