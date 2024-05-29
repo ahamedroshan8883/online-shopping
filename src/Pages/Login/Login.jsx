@@ -3,11 +3,11 @@ import Form from 'react-bootstrap/Form';
 import "../Login/login.css"
 import Button from 'react-bootstrap/Button';
 import userServices from "../../services/userServices";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function Login({setUsername}){
   let [userInput,setUserInput] = useState({email:"",password:""})
-
+  let navigate = useNavigate();
   const handleChanges = (e)=>{
     const {name,value} = e.target;
     setUserInput({...userInput,[name]:value});
@@ -17,13 +17,14 @@ export default function Login({setUsername}){
     e.preventDefault();
     validateUser(user);
     setUserInput({email:"",password:""})
-    window.history.back();
+    
   }
 
   const validateUser = async(user)=>{
     try{
         const response = await userServices.login(user)
-        console.log(response.data);
+        console.log(response);
+        if(response.status==200){
         const token = response.data
         let userData = parseJWT(token);
         console.log(userData);
@@ -31,6 +32,8 @@ export default function Login({setUsername}){
         localStorage.setItem('email',userData.email)
         localStorage.setItem('username',userData.username)
         setUsername(localStorage.getItem('username'));
+        navigate('/')
+        }   
     }catch(error){
       console.log(error);
     }

@@ -8,10 +8,15 @@ import Chip from '@mui/joy/Chip';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/joy/Typography';
 import { Rate } from 'antd';
+import { useDispatch } from 'react-redux';
+import { addproducts } from '../../redux/cartRedux/cartSlice';
 
 export default function ProductCard({product}) {
+  let dispatch = useDispatch();
+  const handleAddcart = (product)=>{
+    dispatch(addproducts(product));
+  }
   return (<>
-      {/* <p>{JSON.stringify(item)}</p> */}
       <Card sx={{ width: 200, height:420, maxWidth: '100%', boxShadow: 'lg' }}>
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 100 }}>
@@ -51,7 +56,7 @@ export default function ProductCard({product}) {
         </Typography>
       </CardContent>
       <CardOverflow>
-        <Button variant="solid" color="danger" size="lg" >
+        <Button variant="solid" color="danger" size="lg" onClick={()=>handleAddcart(product)}>
           Add to cart
         </Button>
       </CardOverflow>

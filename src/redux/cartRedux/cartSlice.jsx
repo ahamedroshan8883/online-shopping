@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    products:[]
+    products:[],
+    cartTotalquantity:0,
+    cartTitalAmount:0
 }
 const cartSlice = createSlice({
     name:'products',
     initialState,
     reducers:{
         addproducts:(state,action)=>{
-            state.products.push(action.payload);
+            const temppro = {...action.payload,cartQuantiy:1};
+            state.products.push(temppro);
             console.log(action.payload);
-            state.products.quantity = state.products.quantity+1;
-            state.products.index= state.products.index+1;
         }
     }
 })
