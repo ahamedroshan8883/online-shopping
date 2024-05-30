@@ -1,0 +1,10 @@
+.Delivery-page{
+    height: calc(100vh - 4rem);
+    overflow: hidden;
+}
+.result-box{
+    background-color: #f5f7eb;
+    padding: 2rem 4rem;
+    width: 40%;
+    margin: 5rem auto;
+}

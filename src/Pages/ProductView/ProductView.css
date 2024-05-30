@@ -3,9 +3,13 @@
     width: 100vw;
     max-width: 85rem;
     display: flex;
-    margin: 0 auto; 
+    margin: 5rem auto; 
     position: relative;
     background-color: #FFF5FF;
+}
+.product-mainCon{
+    height: calc(100vh - 4rem);
+
 }
 .productDisplay-left{
     margin: 4rem 2rem;

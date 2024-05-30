@@ -1,0 +1,10 @@
+.Shipping-container{
+    height: calc(100vh - 4rem);
+    overflow: hidden;
+}
+.ShippingForm-con{
+    margin: 4rem auto;
+    padding: 2rem 4rem;
+    background-color: #f5f7eb;
+    max-width: 70%;
+}

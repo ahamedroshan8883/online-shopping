@@ -2,10 +2,17 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import "../ProductView/ProductView.css"
 import { Rate } from 'antd';
+import { useDispatch } from "react-redux";
+import { addproducts } from "../../redux/cartRedux/cartSlice";
 
 export default function Productviews(){
     let id = useParams();
+    let dispatch = useDispatch();
+
     let[product,setProduct] = useState(null);
+    const handleAddcart = (product)=>{
+      dispatch(addproducts(product));
+    }
     const ProductFetch = async (id)=>{
       console.log(`https://fakestoreapi.com/products/${id.productid}`);
        fetch(`https://fakestoreapi.com/products/${id.productid}`)
@@ -17,6 +24,7 @@ export default function Productviews(){
         ProductFetch(id)
     },[id])
   return (<>
+  <div className="product-mainCon">
   {product? 
   <div id="product-container"> 
     <div className="productDisplay-left">
@@ -43,7 +51,7 @@ export default function Productviews(){
         <p>The dress cascaded down in layers of soft chiffon, adorned with delicate lace appliques that added a touch of whimsy.
          With its simple silk sheath silhouette and unadorned elegance, the dress exuded timeless sophistication, perfect for a formal evening event.</p>
       </div>
-      {product.category=="jewelery"?'':
+      {/* {product.category=="jewelery"?'':
       <div className="product-size-select">
         <h4>Select size:</h4>
         <div className="product-size">
@@ -53,10 +61,12 @@ export default function Productviews(){
           <div>XL</div>
           <div>XXL</div>
         </div>
-      </div>}
-      <button>Add to cart</button>
-      <button>Buy now</button>
+      </div>} */}
+      <button onClick={()=>handleAddcart(product)}>Add to cart</button>
+      {/* <button>Buy now</button> */}
     </div>
   </div> :''}
+  </div>
+  
   </>)
 };

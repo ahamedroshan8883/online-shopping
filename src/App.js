@@ -16,6 +16,8 @@ import { useEffect, useState } from 'react';
 import Logout from './Pages/Logout/Logout';
 import Signup from './Pages/signup/Signup';
 import Cart from './Pages/Cart/Cart';
+import ShippingPage from './Pages/Shipping/ShippingPage';
+import DeliveryPage from './Pages/DeliveryPage/DeliveryPage';
 
 function App() {
   let[userName,setUsername] = useState('');
@@ -39,6 +41,8 @@ function App() {
         <Route path="/product/:productid" element={<Productviews></Productviews>}></Route>
         <Route path="/Signup" element={<Signup></Signup>}></Route>
         <Route path="/Cart" element={<Cart></Cart>}></Route>
+        <Route path="/Shipping" element={<ShippingPage></ShippingPage>}></Route>
+        <Route path="/delivery" element={<DeliveryPage></DeliveryPage>}></Route>
       </Routes>
     </BrowserRouter>
     </div>
