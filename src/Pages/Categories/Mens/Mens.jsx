@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "../Mens/mens.css"
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "../../Productard/ProductCard";
+import ProductCard from "../../Productcard/ProductCard";
 import { fetchProductsByCategory } from "../../../redux/reduxAsync/categoryProducts";
 export default function Mens(){
   let dispatch = useDispatch();

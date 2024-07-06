@@ -6,13 +6,10 @@
 .Signup-form{
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 0.2rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     background-color: #f5f7eb;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
+    margin: 1rem auto;
+    width: 40rem;
 }
 .Signup-con h1{
     font-family: "Montserrat", sans-serif;

@@ -23,7 +23,7 @@ export default function ProductCard({product}) {
           <img
             src={product.
               image}
-            srcSet="https://images.unsplash.com/photo-1593121925328-369cc8459c08?auto=format&fit=crop&w=286&dpr=2 2x"
+              srcSet={product.image}
             loading="lazy"
             alt="" 
             style={{width:"11rem",margin:"1rem"}}

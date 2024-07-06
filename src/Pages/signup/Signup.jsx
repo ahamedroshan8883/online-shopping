@@ -34,11 +34,11 @@ export default function Signup(){
     <div className="Signup-form">
         <h1>Signup</h1>
         <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
-      <Form.Group className="mt-3" controlId="formGroupEmail">
+      <Form.Group className="mt-1" controlId="formGroupEmail">
         <Form.Label>Full name</Form.Label>
         <Form.Control type="text" name="username" placeholder="Enter fullname" value={userInput.username} onChange={handlechanges}/>
       </Form.Group>
-      <Form.Group className="mt-3" controlId="formGroupEmail">
+      <Form.Group className="mt-1" controlId="formGroupEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" name="email" placeholder="Enter email" value={userInput.email} onChange={handlechanges}/>
       </Form.Group>
@@ -67,10 +67,7 @@ export default function Signup(){
           <Link to='/'><Button variant="danger">Back</Button></Link>{' '}
       </div>
     </Form>
-    <hr />
-        <p style={{textAlign:"center"}}>Already have an account?&nbsp;&nbsp;<Link to='/Login'>Login</Link></p>
     </div>
-    
   </div>
   </>)
 };

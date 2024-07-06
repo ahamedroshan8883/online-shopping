@@ -5,19 +5,45 @@ import Button from 'react-bootstrap/Button';
 import userServices from "../../services/userServices";
 import {Link, useNavigate} from "react-router-dom";
 
+
 export default function Login({setUsername}){
-  let [userInput,setUserInput] = useState({email:"",password:""})
+  let [userInput,setUserInput] = useState({email:"",password:""});
+  let [Errors,setErrors] = useState({email:"",password:""});
   let navigate = useNavigate();
+
   const handleChanges = (e)=>{
     const {name,value} = e.target;
     setUserInput({...userInput,[name]:value});
+    const error = validate(name,value);
+    setErrors({...Errors,[name]:error});
   } 
+  const validate = (name,value)=>{
+    let error = '';
+    switch(name){
+      case 'email':
+        if(!value){
+          error = 'Email is requiired';
+        }else if(!/\S+@\S+\.\S+/.test(value)){
+          error = 'Enter valid email'
+        }
+        break;
+      case 'password':
+        if(!value){
+          error = 'Password is required';
+        }else if(value.lenght<6){
+          error = 'Password must be at least 6 characters';
+        }
+        break;
+        default:
+          break;
+    }
+    return error;
+  }
 
   const handleSubmit = (e,user)=>{
     e.preventDefault();
     validateUser(user);
     setUserInput({email:"",password:""})
-    
   }
 
   const validateUser = async(user)=>{
@@ -64,6 +90,7 @@ export default function Login({setUsername}){
         <hr />
         <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup'>Register here</Link></p>
       </Form>
+      {JSON.stringify(Errors)}
   </div>
   </div>
   </>)

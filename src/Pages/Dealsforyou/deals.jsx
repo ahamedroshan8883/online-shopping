@@ -1,5 +1,5 @@
 import React from "react" 
-import ProductCard from "../Productard/ProductCard";
+import ProductCard from "../Productcard/ProductCard";
 import '../Dealsforyou/deals.css'
 import {  useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
