@@ -1,10 +1,45 @@
 .Shipping-container{
     height: calc(100vh - 4rem);
-    overflow: hidden;
+    /* overflow: hidden; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ShippingForm-con p,.ShippingForm-con h4{
+    text-align: center;
+    margin: 0 !important;
+    font-size: small;
+}
+.ShippingForm-con label{
+    font-size: small;
+}
+.ShippingForm-con input,.ShippingForm-con select{
+    padding: 2px;
+    height: 30px;
+}
+.ShippingForm-con input::placeholder,.ShippingForm-con select{
+    font-size: small;
+    font-weight: 600;
+}
+.ShippingForm-con small{
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-size: 11px;
+    font-weight: 600;
 }
 .ShippingForm-con{
-    margin: 4rem auto;
-    padding: 2rem 4rem;
+    
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 1.5rem 1rem;
     background-color: #f5f7eb;
-    max-width: 70%;
+    width: 500px;
+    height: 440px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.button-con{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
 }

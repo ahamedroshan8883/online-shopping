@@ -9,30 +9,22 @@ import {Link, useNavigate} from "react-router-dom";
 export default function Login({setUsername}){
   let [userInput,setUserInput] = useState({email:"",password:""});
   let [Errors,setErrors] = useState({email:"",password:""});
+  let[isSubmitted,setIssubmitted] = useState(false);
   let navigate = useNavigate();
 
   const handleChanges = (e)=>{
     const {name,value} = e.target;
     setUserInput({...userInput,[name]:value});
-    const error = validate(name,value);
-    setErrors({...Errors,[name]:error});
+    validate(name,value);
   } 
   const validate = (name,value)=>{
-    let error = '';
+    let error = Errors;
     switch(name){
-      case 'email':
-        if(!value){
-          error = 'Email is requiired';
-        }else if(!/\S+@\S+\.\S+/.test(value)){
-          error = 'Enter valid email'
-        }
+      case 'email': 
+              error.email = value ===''? 'Email is requiired':'' || !/\S+@\S+\.\S+/.test(value) ?'Enter valid email':''
         break;
-      case 'password':
-        if(!value){
-          error = 'Password is required';
-        }else if(value.lenght<6){
-          error = 'Password must be at least 6 characters';
-        }
+      case 'password': 
+              error.password = value ==='' ? 'Password is required':'' || value.length<6 ? 'Password must be at least 6 characters':''
         break;
         default:
           break;
@@ -42,8 +34,18 @@ export default function Login({setUsername}){
 
   const handleSubmit = (e,user)=>{
     e.preventDefault();
-    validateUser(user);
-    setUserInput({email:"",password:""})
+    setIssubmitted(true);
+    const valid = Object.values(Errors).every(error => error==='') && 
+                  Object.values(userInput).every(input => input!=='');
+    Object.keys(user).forEach(key=>{
+      const value = user[key];
+      validate(key,value);
+    })
+    console.log(Errors);
+    if(valid){
+          validateUser(user);
+          setUserInput({email:"",password:""})
+    }
   }
 
   const validateUser = async(user)=>{
@@ -75,14 +77,16 @@ export default function Login({setUsername}){
   <div className="login-con">
   <h1 className="m-3">Login</h1>
   <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
-        <Form.Group className="m-3" controlId="formGroupEmail">
+        <Form.Group className="mt-3" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
+          <Form.Control type="text" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
         </Form.Group>
-        <Form.Group className="m-3" controlId="formGroupPassword">
+        {isSubmitted && Errors.email? <small style={{color:"red",fontWeight:600}}>{Errors.email}</small>:''}
+        <Form.Group className="mt-3" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter your password" name="password" value={userInput.password} onChange={handleChanges}/>
         </Form.Group>
+        {isSubmitted && Errors.password? <small style={{color:"red",fontWeight:600}}>{Errors.password}</small>:''}
         <div className="button m-3">
           <Button variant="primary" type="submit">Login</Button>{' '}
           <Link to='/'><Button variant="danger">Back</Button></Link>{' '}
@@ -90,7 +94,7 @@ export default function Login({setUsername}){
         <hr />
         <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup'>Register here</Link></p>
       </Form>
-      {JSON.stringify(Errors)}
+      {/* {JSON.stringify(Errors)} */}
   </div>
   </div>
   </>)

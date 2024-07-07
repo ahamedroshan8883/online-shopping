@@ -4,14 +4,23 @@
     max-width: 75rem;
 }
 .Signup-form{
+    box-sizing: border-box;
+    height: 430px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 0.2rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     background-color: #f5f7eb;
     margin: 1rem auto;
     width: 40rem;
 }
-.Signup-con h1{
+.Signup-form label{
+    font-size: 0.8rem!important;
+}
+/* .Signup-form input[type="text"],input[type="email"],input[type="password"]{
+    padding: 0.2rem!important;
+    height: 1.5rem !important;
+} */
+.Signup-con h3{
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
