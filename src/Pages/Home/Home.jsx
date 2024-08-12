@@ -9,10 +9,12 @@ export default function Home({items}){
   return (<>
     <div id="homepage">
         <div className="content-text">
-        <span className="samll-txt">NEW ARRAIVALS ONLY</span><br />
+        <span className="small-txt">NEW ARRAIVALS ONLY</span><br />
         <span className="large-txt">new 👋 Collections for Every one</span>
         </div>
-        <img src={fashionimg} alt="" className="homepageimg"/>
+        <div className='img' style={{overflow:"hidden"}}>
+          <img src={fashionimg} alt="" className="homepageimg"/>
+        </div>
     </div>
     <Deals items={items}></Deals>
   </>)

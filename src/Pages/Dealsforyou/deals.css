@@ -2,24 +2,35 @@
     overflow: auto;
     background-color: #FFF5FF;
     width: 100vw;
-    max-width: 75rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 .deals-con .products{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     justify-content: center;
-
+    gap: 1rem;
 }
-.productlist{
+/* .productlist{
     display: flex;
     flex-direction: column;
     margin: 1rem;
-}
+} */
 .header{
+    padding: 1rem 0;
     text-align: center;
+}
+@media screen and (max-width:700px) {
+    .deals-con .products{
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    
+    }
+    
 }

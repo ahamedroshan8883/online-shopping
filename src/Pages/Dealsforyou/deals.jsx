@@ -15,12 +15,10 @@ const Deals = ()=>{
   },[])
   return (<>
     <div className="deals-con">
-        <h2 className="header">  Deals for you</h2>
+        <h1 className="header">Deals for you</h1>
       <div className="products">
         {!Isloading? products.map(product=>
-          <div className="productlist" key={product.id}>
-            <ProductCard product={product}></ProductCard>
-          </div>
+            <ProductCard product={product} key={product.id}></ProductCard>
             ):'Loading...'}
       </div>  
       </div>

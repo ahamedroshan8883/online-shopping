@@ -24,8 +24,6 @@ export default function Navbar({userName}){
   const data = useSelector(state => state.cartStore);
   console.log(data);
   let [filteredProducts,setFilteredProducts] = useState([]);
-  let[Ismouse,setIsmouse] = useState(false);
-  let [IsvisibleUC,setIsvisibleUC] = useState(false);
   let[searchName,setSearchName] = useState('');
   console.log(searchName);
 
@@ -63,25 +61,23 @@ export default function Navbar({userName}){
           <label htmlFor="check" className="checkbtn" ><GiHamburgerMenu></GiHamburgerMenu></label>
         <div className="navlist">
         <Link className="navlistItem" to="/"><FaHome/>&nbsp;Home</Link>
-          <Link className="navlistItem"onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} ><FaShirt />&nbsp;Categories</Link>
-          {Ismouse?<div className="categoryList" onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} >
+          <Link className="navlistItem" id="Category"><FaShirt />&nbsp;Categories</Link>
+          <div className="categoryList">
               <Link to="/categories/men's clothing" className="navlistItem"><FaMale />&nbsp;Men's clothing</Link>
               <Link to="/categories/women's clothing" className="navlistItem"><FaFemale />&nbsp;Women's clothing</Link>
               <Link to="/categories/jewelery" className="navlistItem"><GiJewelCrown />&nbsp;Jewellery</Link>
-          </div>:null}
+          </div>
         <Link className="navlistItem" to="/Cart">
           <Badge badgeContent={data.products.length} color="secondary">
               <IoBag />
           </Badge>&nbsp;Cart</Link>
-            {!userName ?<Link className="navlistItemk" to="/Login">Login&nbsp;<RiLoginBoxFill /></Link>:
-              <Link onMouseOver={()=>setIsvisibleUC(true)} onMouseOut={()=>setIsvisibleUC(false)} className="navlistItem"><CgProfile />&nbsp;{userName}</Link>
+            {!userName ?<Link className="navlistItem" to="/Login"><RiLoginBoxFill />&nbsp;Login</Link>:
+              <Link className="navlistItem" id="user"><CgProfile />&nbsp;{userName}</Link>
             }
-            {IsvisibleUC?
-                <div className="userConfig" onMouseOver={()=>setIsvisibleUC(true)} onMouseOut={()=>setIsvisibleUC(false)} >
+                <div className="userList">
                   <Link to="Logout" className="navlistItem"><RiLogoutBoxFill />&nbsp;Logout</Link>
                   <Link to="" className="navlistItem"><FaUser />&nbsp;Profile</Link>
                 </div>
-              :null}
         </div>
     </nav>
   </>)

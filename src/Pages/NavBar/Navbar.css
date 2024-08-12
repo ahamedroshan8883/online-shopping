@@ -1,14 +1,14 @@
 .nav-bar{
     position: sticky;
+    top: 0; /* Important to define the sticky point */
     height: 4rem;
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     background-color: #FFF5FF;
     z-index: 3;
-    box-sizing: content-box;
+    box-sizing: border-box;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 .navlistItem{
@@ -30,13 +30,20 @@
     color: #ff6f91;
 }
 .categoryList{
+    display: none;
+    position: absolute;
+    overflow-y: hidden;
+    top: 40px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #f5f7eb;
-    padding: 1rem 0.2rem;
+    padding: 10px 15px;
     border-radius: 1rem;
+    transition: all 1.5s;
 }
-
-.categoryList .lnavlistItemink{
+#Category:hover + .categoryList,.categoryList:hover{
+    display: block;
+}
+.categoryList .navlistItemin{
     padding: 1rem;
     margin: 0 auto;
 }
@@ -56,7 +63,7 @@
 }
 .search-bar{
     width: 30vw;
-    /* height: 40px; */
+    height: 40px;
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 0 20px;
@@ -67,7 +74,7 @@
 .search-Box{
     border: none;
     width: 70%;
-    height: 40px;
+    /* height: 40px; */
     background: transparent;
     outline: none;
 }
@@ -77,16 +84,23 @@
   font-family: "Raleway", sans-serif;
   /* font-size: x-small; */
 }
-.userConfig{
+.userList{
+    display: none;
+}
+#user:hover +.userList, .userList:hover{
+    display: block;
+} 
+.userList{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #f5f7eb;
-    position: relative;
+    position: absolute;
+    top: 40px;
+    right: 20px;
     width: 10rem;
-    padding: 1rem 2rem;
-    right :0;
+    padding: 10px 15px;
     border-radius: 1rem;
 }
-.userConfig .navlistItem{
+.userList .navlistItem{
     padding: 0.5rem;
     margin: 0 auto;
 }
@@ -111,16 +125,14 @@
         font-size: medium;
     }
     .nav-bar{
-        justify-content: space-around;
-        /* overflow-x: hidden; */
-        width: 100vw;
+        position: sticky;
     }
     .navlist{
         height: calc(100vh - 4rem);
         width: 0vh;
         background-color: #FFF5FF;
         display: flex;
-        position: absolute;
+        position: fixed;
         top: 4rem;
         right: 0;
         flex-direction: column;
@@ -153,5 +165,12 @@
     }
     #check:checked~.navlist{
         width: 40vw;
+    }
+    .categoryList{
+        border-radius: 0px;
+        position: static;
+    }
+    .userList{
+        position: static;
     }
 }
