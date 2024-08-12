@@ -22,7 +22,7 @@
     text-align: left;
     /* align-content: center;    */
     justify-content: center;
-    z-index: 3;
+    z-index: 2;
 }
 .content-text .large-txt{
     font-weight: 600;

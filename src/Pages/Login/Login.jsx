@@ -94,7 +94,7 @@ export default function Login({setUsername}){
         <hr />
         <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup'>Register here</Link></p>
       </Form>
-      {/* {JSON.stringify(Errors)} */}
+      {JSON.stringify(userInput)} 
   </div>
   </div>
   </>)

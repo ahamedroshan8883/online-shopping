@@ -32,14 +32,13 @@ export default function Productviews(){
         <img className="img-list" src={product.image} alt="" />
         <img className="img-list" src={product.image} alt="" />
         <img className="img-list" src={product.image} alt="" />
-        <img className="img-list" src={product.image} alt="" />
       </div>
       <div className="productdisplay-img">
         <img src={product.image} alt="" className="productdisplay-main-img" />
       </div>  
     </div>
     <div className="productDisplay-right">
-      <h1>{product.title}</h1>
+      <h3>{product.title}</h3>
       <div className="product-stars">
         <Rate disabled defaultValue={product.rating.rate} />
       </div>

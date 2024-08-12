@@ -110,7 +110,7 @@ export default function ShippingPage(){
                 <h4>Shipping Details</h4>
                 <p>Only COD (cash on delivery)</p>
             <Form onSubmit={(e)=>handelSubmit(e,details)}>
-                <Row className="mt-2">
+                <Row className="mt-3">
                 <Col>
                     <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Control type="text" value={details.firstname} name="firstname" placeholder="Enter first name" onChange={handleChanges}/>
@@ -124,7 +124,7 @@ export default function ShippingPage(){
                     {isSubmitted && Errors.lastname ?<small>{Errors.lastname}</small>:<small></small>}
                 </Col>
                 </Row>
-                <Row className="mt-2">
+                <Row className="mt-3">
                 <Col>
                     <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Control type="email" value={details.email} name="email" placeholder="Enter email" onChange={handleChanges}/>
@@ -139,8 +139,8 @@ export default function ShippingPage(){
                 </Col>
                 </Row>
 
-            <Form.Group  controlId="formGridAddress1"className="mt-2">
-                <Form.Control value={details.address} name="address" placeholder="Enter Address:1234 Main St" onChange={handleChanges}/>
+            <Form.Group  controlId="formGridAddress1"className="mt-3">
+                <Form.Control value={details.address} name="address" placeholder="Enter Address : 1234 Main St" onChange={handleChanges}/>
             </Form.Group>
             {isSubmitted && Errors.address ?<small>{Errors.address}</small>:<small></small>}
             <Row className="mt-3">

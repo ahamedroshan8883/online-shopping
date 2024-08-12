@@ -14,11 +14,15 @@ import { IoBag } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
-
+import { Badge } from "@mui/material";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Navbar({userName}){
+  console.log(userName);
   let dispatch = useDispatch();
   const {products,Isloading} = useSelector(state=>state.productsStore);
+  const data = useSelector(state => state.cartStore);
+  console.log(data);
   let [filteredProducts,setFilteredProducts] = useState([]);
   let[Ismouse,setIsmouse] = useState(false);
   let [IsvisibleUC,setIsvisibleUC] = useState(false);
@@ -53,28 +57,29 @@ export default function Navbar({userName}){
                       <hr style={{border:"0.5px solid grey",margin:"7px 0px"}}></hr>
                     </div>
                   )}
-            </div>}
+        </div>}
         </div>
-        <div className="categories" style={{display:"flex",flexDirection:"row",gap:"2rem"}}>
-          <Link className="link"onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} ><FaShirt />&nbsp;Categories</Link>
-          {Ismouse?<div className="categoryList" onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} >
-              <Link to="/categories/men's clothing" className="link"><FaMale />&nbsp;Men's clothing</Link>
-              <Link to="/categories/women's clothing" className="link"><FaFemale />&nbsp;Women's clothing</Link>
-              <Link to="/categories/jewelery" className="link"><GiJewelCrown />&nbsp;Jewellery</Link>
-          </div>:null}
-          <Link className="link" to="/Cart"><IoBag />&nbsp;Cart</Link>
-        </div>
+          <input type="checkbox" name="check" id="check" style={{display:"none"}}/>
+          <label htmlFor="check" className="checkbtn" ><GiHamburgerMenu></GiHamburgerMenu></label>
         <div className="navlist">
-            <Link className="navlistItem link" to="/">Home&nbsp;<FaHome/></Link>
-            {!userName ?<Link className="navlistItem link" to="/Login">Login&nbsp;<RiLoginBoxFill /></Link>:
-            <div onMouseOver={()=>setIsvisibleUC(true)} onMouseOut={()=>setIsvisibleUC(false)}>
-              <Link className="navlistItem link profile-bar"><CgProfile />{userName}</Link>
-            </div>
+        <Link className="navlistItem" to="/"><FaHome/>&nbsp;Home</Link>
+          <Link className="navlistItem"onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} ><FaShirt />&nbsp;Categories</Link>
+          {Ismouse?<div className="categoryList" onMouseOver={()=>setIsmouse(true)} onMouseOut={()=>setIsmouse(false)} >
+              <Link to="/categories/men's clothing" className="navlistItem"><FaMale />&nbsp;Men's clothing</Link>
+              <Link to="/categories/women's clothing" className="navlistItem"><FaFemale />&nbsp;Women's clothing</Link>
+              <Link to="/categories/jewelery" className="navlistItem"><GiJewelCrown />&nbsp;Jewellery</Link>
+          </div>:null}
+        <Link className="navlistItem" to="/Cart">
+          <Badge badgeContent={data.products.length} color="secondary">
+              <IoBag />
+          </Badge>&nbsp;Cart</Link>
+            {!userName ?<Link className="navlistItemk" to="/Login">Login&nbsp;<RiLoginBoxFill /></Link>:
+              <Link onMouseOver={()=>setIsvisibleUC(true)} onMouseOut={()=>setIsvisibleUC(false)} className="navlistItem"><CgProfile />&nbsp;{userName}</Link>
             }
             {IsvisibleUC?
                 <div className="userConfig" onMouseOver={()=>setIsvisibleUC(true)} onMouseOut={()=>setIsvisibleUC(false)} >
-                  <Link to="Logout" className="link"><RiLogoutBoxFill />&nbsp;Logout</Link>
-                  <Link to="" className="link"><FaUser />&nbsp;Profile</Link>
+                  <Link to="Logout" className="navlistItem"><RiLogoutBoxFill />&nbsp;Logout</Link>
+                  <Link to="" className="navlistItem"><FaUser />&nbsp;Profile</Link>
                 </div>
               :null}
         </div>
