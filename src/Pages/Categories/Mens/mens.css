@@ -5,22 +5,27 @@
     margin: 0 auto;
     overflow-x: hidden;
     position: relative;
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
     overflow-y: scroll;
 }
 .product-Con{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 3rem;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     justify-content: center;
+    gap: 1rem;
+}  
+@media screen and (max-width:700px) {
+    .product-Con{
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 0.5rem;
+        justify-content: center;
+    
+    }
     
 }
-.product{
-    margin:1rem;
-    
-}
-#mens::-webkit-scrollbar {
-    display: none;
+@media screen and (max-width:400) {
+    .product-Con{
+        gap: 0.2rem;
+    }
 }

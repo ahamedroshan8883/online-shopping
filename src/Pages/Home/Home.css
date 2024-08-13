@@ -30,10 +30,10 @@
 .small-txt{
     font-size: x-large;
 }
-@media  screen and (max-width:550px) {
+@media  screen and (max-width:550px) and (max-width:450px){
     .homepageimg{
         top: 2rem;
-        /* right: 7rem; */
+        right: 7rem;
         height: 100vh;
         z-index: -1;
     }
