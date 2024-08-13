@@ -11,7 +11,7 @@
 .homepageimg{
     position: relative;
     top: 2rem;
-    right: 3rem;
+    /* right: 3rem; */
     height: 100%;
 }
 
@@ -33,7 +33,7 @@
 @media  screen and (max-width:550px) {
     .homepageimg{
         top: 2rem;
-        right: 0rem;
+        /* right: 7rem; */
         height: 100vh;
         z-index: -1;
     }
