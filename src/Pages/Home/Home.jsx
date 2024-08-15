@@ -12,9 +12,7 @@ export default function Home({items}){
         <span className="small-txt">NEW ARRAIVALS ONLY</span><br />
         <span className="large-txt">new 👋 Collections for Every one</span>
         </div>
-        <div className='img' style={{overflow:"hidden",margin:"0 auto"}}>
           <img src={fashionimg} alt="" className="homepageimg"/>
-        </div>
     </div>
     <Deals items={items}></Deals>
   </>)

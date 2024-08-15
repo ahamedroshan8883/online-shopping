@@ -75,26 +75,26 @@ export default function Login({setUsername}){
   return (<>
   <div id="login-form">
   <div className="login-con">
-  <h1 className="m-3">Login</h1>
+  <h1 >Login</h1>
   <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
-        <Form.Group className="mt-3" controlId="formGroupEmail">
+        <Form.Group className="mt-2" controlId="formGroupEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="text" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
         </Form.Group>
         {isSubmitted && Errors.email? <small style={{color:"red",fontWeight:600}}>{Errors.email}</small>:''}
-        <Form.Group className="mt-3" controlId="formGroupPassword">
+        <Form.Group className="mt-2" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter your password" name="password" value={userInput.password} onChange={handleChanges}/>
         </Form.Group>
-        {isSubmitted && Errors.password? <small style={{color:"red",fontWeight:600}}>{Errors.password}</small>:''}
-        <div className="button m-3">
-          <Button variant="primary" type="submit">Login</Button>{' '}
+        {isSubmitted && Errors.password? <small className="errormgs" style={{color:"red",fontWeight:600}}>{Errors.password}</small>:''}
+        <div className="button">
+          <Button variant="primary" type="submit">Login</Button>
           <Link to='/'><Button variant="danger">Back</Button></Link>{' '}
         </div>
         <hr />
-        <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup'>Register here</Link></p>
+        <p style={{textAlign:"center"}}>Don't have an account?&nbsp;&nbsp;<Link to='/Signup' style={{fontSize:"small"}}>Register here</Link></p>
       </Form>
-      {JSON.stringify(userInput)} 
+      {/* {JSON.stringify(userInput)}  */}
   </div>
   </div>
   </>)

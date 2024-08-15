@@ -36,10 +36,10 @@ export default function Cart(){
   return (
     <>
     <div className="cart-body">
-        <div id="cart-container">
+        <div className="cart-container">
           <h2>Shopping cart</h2>
           {localStorage.getItem('username')?products.length===0?
-          <div id="cart-empty">
+          <div className="cart-empty">
             <p>Your cart is currently empty</p>
             <div className="start-shopping">
               <Link to="/">Start Shopping <FaArrowRight /></Link>
@@ -86,7 +86,7 @@ export default function Cart(){
               </div>
             </div>
           </div>
-          :<div id="cart-empty">
+          :<div className="cart-empty">
           <p>Your are not logged in! please login</p>
           <div className="start-shopping">
             <Link to="/login"><Button>Login</Button></Link>

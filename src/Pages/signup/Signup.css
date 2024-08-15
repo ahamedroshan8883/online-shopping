@@ -1,19 +1,22 @@
-#Signup-con{
+#Signup-form{
     height: calc(100vh - 4rem);
     width: 100vw;
-    max-width: 75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* max-width: 75rem; */
 }
-.Signup-form{
+.Signup-con{
     box-sizing: border-box;
-    height: 430px;
+    /* height: 430px; */
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 0.2rem;
     padding: 1rem 1rem;
     background-color: #f5f7eb;
-    margin: 1rem auto;
-    width: 40rem;
+    /* margin: 1rem auto; */
+    width: 50vw;
 }
-.Signup-form label{
+.Signup-con label{
     font-size: 0.8rem!important;
 }
 /* .Signup-form input[type="text"],input[type="email"],input[type="password"]{
@@ -24,17 +27,23 @@
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
-.Signup-form .button{
+.Signup-con .button{
     display: flex;
     flex-direction:row;
     width: 90%;
     justify-content: flex-end;
     gap: 2rem;
 }
-.Signup-form .errorMessage{
-    margin: 0 !important;
-    padding: 0 !important;
+.Signup-con .errorMessage{
     color: red;
     font-size: 0.7rem;
     font-weight: 700;
+}
+@media screen and (max-width:450px) {
+    .Signup-con{
+        width: 80vw;
+    }
+    input::placeholder{
+        font-size: x-small;
+    }
 }

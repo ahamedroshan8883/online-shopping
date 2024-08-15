@@ -1,24 +1,30 @@
 #login-form{
     height: calc(100vh - 4rem);
     width: 100vw;
-    max-width: 75rem;
+    /* max-width: 75rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #login-form h1{
+    text-align: center;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
 }
 .login-con{
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 0.2rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     background-color: #f5f7eb;
-    margin: 2rem auto;
-    width: 30%;
+    width: 40vw;
+    /* margin: auto; */
 }
 .login-con .button{
     display: flex;
+    /* flex-wrap: wrap; */
     flex-direction:row;
-    width: 90%;
+    /* width: 90%; */
+    padding: 0.5rem;
     justify-content: flex-end;
     gap: 2rem;
 }
@@ -29,4 +35,48 @@ label{
 input::placeholder{
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
+}
+.login-con p{
+    font-size: medium;
+}
+@media screen and (max-width:600px){
+    .login-con{
+        width: 50vw;
+        padding: 1rem 1rem;
+    }
+    .login-con h1{
+        font-size: large;
+    }
+    label{
+        text-align: center;
+        font-size: small;
+    }
+    .login-con .button{
+        gap:1rem;
+    }
+    input::placeholder{
+        font-size: small;
+    }
+    input{
+        padding: .2rem .2rem;
+    }
+    .btn{
+        padding: 0.1rem 0.2rem !important;
+        font-size: small !important;
+    }
+    .login-con p,.login-con a{
+        font-size: x-small !important;
+    }
+}
+@media screen and (max-width:400px){
+    .login-con{
+        width: 70vw;
+        padding: 1rem 1rem;
+    }
+    input{
+        padding: .2rem .2rem !important;
+    }
+    form ~.errormgs{
+        font-size: x-small;
+    }
 }

@@ -70,8 +70,8 @@ export default function Signup(){
       }
     }
   return (<>
-  <div id="Signup-con">
-    <div className="Signup-form">
+  <div id="Signup-form">
+    <div className="Signup-con">
         <h3>Signup</h3>
         <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
       <Form.Group className="mt-1" controlId="formGroupUsername">
@@ -79,22 +79,16 @@ export default function Signup(){
         <Form.Control type="text" name="username" placeholder="Enter name" value={userInput.username} onChange={handlechanges}/>
       </Form.Group>
       {isSubmitted && Errors.username ? <small className="errorMessage">{Errors.username}</small>:''}
-      <Row>
-      <Col>
       <Form.Group className="mt-1" controlId="formGroupEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" name="email" placeholder="Enter email" value={userInput.email} onChange={handlechanges}/>
       </Form.Group>
       {isSubmitted && Errors.email ? <small className="errorMessage">{Errors.email}</small>:''}
-      </Col>
-      <Col>
       <Form.Group className="mt-1" controlId="formGroupPassword">
         <Form.Label>Mobile No.</Form.Label>
         <Form.Control type="text" name="mobile" placeholder="Enter mobile no" value={userInput.mobile} onChange={handlechanges}/>
       </Form.Group>
       {isSubmitted && Errors.mobile ? <small className="errorMessage">{Errors.mobile}</small>:''}<br></br>
-      </Col>
-      </Row>
       <Row>
       <Col>
         <Form.Group className="mt-1" controlId="formGroupPassword">
