@@ -1,9 +1,9 @@
 #homepage{
     height: calc(100vh - 4rem);
-    width: 100vw;
+    /* width: 100vw; */
     margin: 0 auto;
     position: relative;
-    overflow-y: hidden;
+    overflow: hidden;
     display: flex;
     justify-content: space-around;
 }

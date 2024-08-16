@@ -37,13 +37,11 @@ export default function Cart(){
     <>
     <div className="cart-body">
         <div className="cart-container">
-          <h2>Shopping cart</h2>
+          <h4>Shopping cart</h4>
           {localStorage.getItem('username')?products.length===0?
           <div className="cart-empty">
-            <p>Your cart is currently empty</p>
-            <div className="start-shopping">
+            <p>Your cart is currently empty.</p>
               <Link to="/">Start Shopping <FaArrowRight /></Link>
-            </div>
           </div>:
           <div>
             <div className="titles">
@@ -52,13 +50,13 @@ export default function Cart(){
               <h3 className="quantity">Quantity</h3>
               <h3 className="total">Total</h3>
             </div>
-            <div className="cartItems">
+            <div className="cartItems" style={{height:"40vh",overflowY:"scroll",overflowX:"none"}}>
               {products.map(item=>
                 <div className="cartItem" key={item.id}>
                   <div className="cart-product">
-                    <img width="100px" height="100px" src={item.image} alt={item.title} />
+                    <img src={item.image} alt={item.title} />
                     <div>
-                      <h3>{item.title}</h3>
+                      <h6>{item.title}</h6>
                       <Button variant="danger" onClick={()=>handleRemoveItem(item)}><FaTrashAlt />&nbsp;Remove</Button>
                     </div>
                   </div>
@@ -75,7 +73,8 @@ export default function Cart(){
                   </div>
                 </div>
               )}
-              <div className="cartSummary">
+            </div>
+            <div className="cartSummary">
                 <div className="cart-checkout">
                   <div className="totalammount"><span>Total ${data.cartTotalAmount.toFixed(0)}</span></div>
                   <Button onClick={()=>handleCheckout()}>Check Out</Button>
@@ -84,7 +83,6 @@ export default function Cart(){
                   </div>
                 </div>
               </div>
-            </div>
           </div>
           :<div className="cart-empty">
           <p>Your are not logged in! please login</p>
