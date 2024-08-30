@@ -15,13 +15,13 @@ export default function ProductCard({ product }) {
   let dispatch = useDispatch();
   const handleAddcart = (product) => {
     dispatch(addproducts(product));
-  }
+  };
 
   return (
     <Card 
       sx={{ 
         width: '100%', 
-        minWidth:100,
+        minWidth: 100,
         maxWidth: 320, 
         height: 'auto', 
         boxShadow: 'lg', 
@@ -122,15 +122,24 @@ export default function ProductCard({ product }) {
           (Only <b>{Math.floor(Math.random() * 20).toString()}</b> left in stock!)
         </Typography>
       </CardContent>
-      <CardOverflow>
+      <CardOverflow 
+        sx={{ 
+          mt: 'auto', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center' 
+        }}
+      >
         <Button 
           variant="solid" 
           color="danger" 
           size="lg" 
-          sx={{ width: '100%', mt: 'auto',
+          sx={{ 
+            width: '100%', 
             '@media (max-width: 600px)': {
-            fontSize: '0.5rem',
-          }}}
+              fontSize: 'small',
+            }
+          }}
           onClick={() => handleAddcart(product)}
         >
           Add to cart
