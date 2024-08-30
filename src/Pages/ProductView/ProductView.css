@@ -4,16 +4,12 @@
     display: flex;
     box-sizing: content-box;
     background-color: #FFF5FF;
+    margin: 2rem auto;
+    /* height: calc(100vh - 4rem); */
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
     border-radius: 10px;
 }
-.product-mainCon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* height: 100vh; */
-    height: calc(100vh - 4rem);
-}
+
 .productDisplay-left{
     margin: 1rem 2rem;
     display: flex;

@@ -24,7 +24,6 @@ export default function Productviews(){
         ProductFetch(id)
     },[id])
   return (<>
-  <div className="product-mainCon">
   {product? 
   <div id="product-container"> 
     <div className="productDisplay-left">
@@ -64,8 +63,6 @@ export default function Productviews(){
       <button onClick={()=>handleAddcart(product)}>Add to cart</button>
       {/* <button>Buy now</button> */}
     </div>
-  </div> :''}
-  </div>
-  
+  </div> :''}  
   </>)
 };
