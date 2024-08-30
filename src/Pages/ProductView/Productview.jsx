@@ -47,8 +47,8 @@ export default function Productviews(){
         <p className="product-newprices">{Number(product.price-product.price/100*25).toPrecision(3)}$&nbsp;&nbsp;&nbsp;25%off</p>
       </div>
       <div className="product-decribe">
-        <p>The dress cascaded down in layers of soft chiffon, adorned with delicate lace appliques that added a touch of whimsy.
-         With its simple silk sheath silhouette and unadorned elegance, the dress exuded timeless sophistication, perfect for a formal evening event.</p>
+        <strong>The dress cascaded down in layers of soft chiffon, adorned with delicate lace appliques that added a touch of whimsy.
+         With its simple silk sheath silhouette and unadorned elegance, the dress exuded timeless sophistication, perfect for a formal evening event.</strong>
       </div>
       {/* {product.category=="jewelery"?'':
       <div className="product-size-select">
