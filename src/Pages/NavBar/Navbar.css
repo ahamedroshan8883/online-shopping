@@ -49,8 +49,11 @@
 }
 .searchList{
     /* width:30vw; */
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
+    overflow: auto;
     font-size: 1rem;
+    width: 55vw;
+    height: 70vh;
     font-weight: bold;
     color: rebeccapurple;
     border-radius: 0.5rem;

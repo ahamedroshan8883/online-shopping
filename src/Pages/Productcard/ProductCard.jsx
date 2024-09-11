@@ -138,7 +138,10 @@ export default function ProductCard({ product }) {
             width: '100%', 
             '@media (max-width: 600px)': {
               fontSize: 'small',
-            }
+            },
+            '@media (max-width: 400px)': {
+              fontSize: 'x-small',
+            },
           }}
           onClick={() => handleAddcart(product)}
         >

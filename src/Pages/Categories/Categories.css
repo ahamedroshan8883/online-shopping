@@ -1,11 +1,15 @@
-#mens{
+#CategoryContainer{
     height: calc(100vh - 4rem);
     width: 100vw;
-    max-width: 75rem;
-    margin: 0 auto;
-    overflow-x: hidden;
-    position: relative;
+    /* overflow-x: hidden; */
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+.CategoriesNav{
+    padding: 20px 30px;
 }
 .product-Con{
     display: grid;
@@ -21,6 +25,9 @@
         gap: 0.5rem;
         justify-content: center;
     
+    }
+    .btn{
+        margin: 0 !important;
     }
     
 }

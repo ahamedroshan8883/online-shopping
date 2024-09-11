@@ -4,8 +4,7 @@ import fashionimg from '../../assets/homepage-banner-with-bg-removebg-preview.pn
 import Deals from "../Dealsforyou/deals";
 
 
-export default function Home({items}){
-  console.log(items);
+export default function Home(){
   return (<>
     <div id="homepage">
         <div className="content-text">
@@ -14,6 +13,6 @@ export default function Home({items}){
         </div>
           <img src={fashionimg} alt="" className="homepageimg"/>
     </div>
-    <Deals items={items}></Deals>
+    <Deals></Deals>
   </>)
 };

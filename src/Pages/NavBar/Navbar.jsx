@@ -61,12 +61,7 @@ export default function Navbar({userName}){
           <label htmlFor="check" className="checkbtn" ><GiHamburgerMenu></GiHamburgerMenu></label>
         <div className="navlist">
         <Link className="navlistItem" to="/"><FaHome/>&nbsp;Home</Link>
-          <Link className="navlistItem" id="Category"><FaShirt />&nbsp;Categories</Link>
-          <div className="categoryList">
-              <Link to="/categories/men's clothing" className="navlistItem"><FaMale />&nbsp;Men's clothing</Link>
-              <Link to="/categories/women's clothing" className="navlistItem"><FaFemale />&nbsp;Women's clothing</Link>
-              <Link to="/categories/jewelery" className="navlistItem"><GiJewelCrown />&nbsp;Jewellery</Link>
-          </div>
+        <Link className="navlistItem" to="/categories" id="Category"><FaShirt />&nbsp;Categories</Link>
         <Link className="navlistItem" to="/Cart">
           <Badge badgeContent={data.products.length} color="secondary">
               <IoBag />

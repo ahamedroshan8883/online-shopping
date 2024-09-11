@@ -4,7 +4,6 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import productReducers from "./reduxAsync/ProductAsyncthunk";
-import categoryProductReducers from "./reduxAsync/categoryProducts";
 import cartReducers from "./cartRedux/cartSlice"
 // const rootrender = combineReducers({
 //     productSore : productReducer,
@@ -14,7 +13,6 @@ import cartReducers from "./cartRedux/cartSlice"
 export const store = configureStore({
     reducer:{
         productsStore:productReducers,
-        categoryProductsStore:categoryProductReducers,
         cartStore:cartReducers
     }
 })
