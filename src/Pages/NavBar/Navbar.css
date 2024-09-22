@@ -29,24 +29,7 @@
 .navlistItem:hover{
     color: #ff6f91;
 }
-.categoryList{
-    display: none;
-    position: absolute;
-    overflow-y: hidden;
-    top: 40px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #f5f7eb;
-    padding: 10px 15px;
-    border-radius: 1rem;
-    transition: all 1.5s;
-}
-#Category:hover + .categoryList,.categoryList:hover{
-    display: block;
-}
-.categoryList .navlistItemin{
-    padding: 1rem;
-    margin: 0 auto;
-}
+
 .searchList{
     /* width:30vw; */
     /* overflow-y: hidden; */

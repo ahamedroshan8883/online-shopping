@@ -9,9 +9,10 @@ import { useEffect, useState } from 'react';
 import Logout from './Pages/Logout/Logout';
 import Signup from './Pages/signup/Signup';
 import Cart from './Pages/Cart/Cart';
-import ShippingPage from './Pages/Shipping/ShippingPage';
-import DeliveryPage from './Pages/DeliveryPage/DeliveryPage';
+import OrderAcceptedPage from './Pages/OrderAcceptedPage/OrderAcceptedPage';
 import Categories from './Pages/Categories/Categories';
+import DeliveryAddressFrom from './Pages/DeliveryAddFrom/DeliveryAddressForm';
+import { useDispatch } from 'react-redux';
 function App() {
   let[userName,setUsername] = useState('');
   useEffect(()=>{
@@ -32,8 +33,8 @@ function App() {
         <Route path="/product/:productid" element={<Productviews></Productviews>}></Route>
         <Route path="/Signup" element={<Signup></Signup>}></Route>
         <Route path="/Cart" element={<Cart></Cart>}></Route>
-        <Route path="/Shipping" element={<ShippingPage></ShippingPage>}></Route>
-        <Route path="/delivery" element={<DeliveryPage></DeliveryPage>}></Route>
+        <Route path="/Shipping" element={<DeliveryAddressFrom></DeliveryAddressFrom>}></Route>
+        <Route path="/delivery" element={<OrderAcceptedPage></OrderAcceptedPage>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

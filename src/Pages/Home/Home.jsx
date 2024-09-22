@@ -2,6 +2,7 @@
 import '../Home/Home.css'
 import fashionimg from '../../assets/homepage-banner-with-bg-removebg-preview.png';
 import Deals from "../Dealsforyou/deals";
+import Footer from '../footer/footer.jsx';
 
 
 export default function Home(){
@@ -14,5 +15,6 @@ export default function Home(){
           <img src={fashionimg} alt="" className="homepageimg"/>
     </div>
     <Deals></Deals>
+    <Footer></Footer>
   </>)
 };

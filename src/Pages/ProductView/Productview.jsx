@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import "../ProductView/ProductView.css"
 import { Rate } from 'antd';
+import { Button, ButtonGroup } from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
+import { IoBagCheck } from "react-icons/io5";
+import cartServices from "../../services/cartServices";
+import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addproducts } from "../../redux/cartRedux/cartSlice";
+import { OrderItemsCheckout } from "../../redux/ReduxForOrder/OrderItemSlice";
 
 export default function Productviews(){
     let id = useParams();
-    let dispatch = useDispatch();
-
+    let dispatch =useDispatch();
+    let navigate =useNavigate();
+    const email = localStorage.getItem('email');
     let[product,setProduct] = useState(null);
-    const handleAddcart = (product)=>{
-      dispatch(addproducts(product));
+    let[quantity,setQuantity] =useState(1);
+    const handleAddcart = async(product)=>{
+      console.log(product);
+      
+      try{
+        const response = await cartServices.AddCartItem_IncQun(product);
+        console.log(response);
+        console.log(product);
+      }catch(error){
+        console.log(error);
+        
+      }
     }
     const ProductFetch = async (id)=>{
       console.log(`https://fakestoreapi.com/products/${id.productid}`);
@@ -20,12 +36,38 @@ export default function Productviews(){
       .then(product=>setProduct(product ))
     } 
     console.log(product);
+
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
+  const handlecheckOut = (product)=>{
+    const orderItem = {
+      products: [{
+        id:product.id,
+        title:product.title,
+        image:product.image,
+        price:product.price,
+        selectedSize:product.selectedSize,
+        quantity:product.quantity
+      }],
+      totalQuantity :product.quantity,
+      totalPrice:Number(product.price)*Number(product.quantity),
+      user:product.user
+    }
+    dispatch(OrderItemsCheckout(orderItem));
+    navigate('/Shipping');
+  }
     useEffect(()=>{
         ProductFetch(id)
     },[id])
   return (<>
+    <Button variant="danger" onClick={()=>window.history.back()} style={{margin:'10px',position:"absolute",left:"5px",top:"70px"}}>
+      <FaArrowLeft ></FaArrowLeft>&nbsp;Back</Button>
+  <div className="ProductView">
   {product? 
-  <div id="product-container"> 
+  <div className="product-container"> 
     <div className="productDisplay-left">
       <div className="productDisplay-img-list">
         <img className="img-list" src={product.image} alt="" />
@@ -37,7 +79,7 @@ export default function Productviews(){
       </div>  
     </div>
     <div className="productDisplay-right">
-      <h3>{product.title}</h3>
+      <h2>{product.title.split(" ").slice(0,4).join(" ")}</h2>
       <div className="product-stars">
         <Rate disabled defaultValue={product.rating.rate} />
       </div>
@@ -46,23 +88,36 @@ export default function Productviews(){
         <p className="product-newprices">{Number(product.price-product.price/100*25).toPrecision(3)}$&nbsp;&nbsp;&nbsp;25%off</p>
       </div>
       <div className="product-decribe">
-        <strong>The dress cascaded down in layers of soft chiffon, adorned with delicate lace appliques that added a touch of whimsy.
-         With its simple silk sheath silhouette and unadorned elegance, the dress exuded timeless sophistication, perfect for a formal evening event.</strong>
+        <p>{product.description}</p>
       </div>
-      {/* {product.category=="jewelery"?'':
+      <div className="product-quantity">
+      <strong>Quantity: &nbsp;</strong>
+            <ButtonGroup className="me-2" aria-label="First group">
+                        <Button variant="secondary" disabled={quantity===1} onClick={()=> setQuantity(quantity-1)}>-</Button>
+                        <Button variant="secondary" disabled>{quantity}</Button>
+                        <Button variant="secondary" onClick={()=>setQuantity(quantity+1)}>+</Button>
+            </ButtonGroup>
+      </div>
+      {product.category=="jewelery"?'':
       <div className="product-size-select">
-        <h4>Select size:</h4>
-        <div className="product-size">
-          <div>S</div>
-          <div>M</div>
-          <div>L</div>
-          <div>XL</div>
-          <div>XXL</div>
-        </div>
-      </div>} */}
-      <button onClick={()=>handleAddcart(product)}>Add to cart</button>
-      {/* <button>Buy now</button> */}
+      <strong>Select size: {!selectedSize?<span><small style={{color:"red"}}>Select a size</small></span>:''}</strong>&nbsp;&nbsp;
+      <ButtonGroup className="product-size">
+        {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+          <Button
+            key={size}
+            variant={selectedSize === size ? 'light' : 'dark'}
+            onClick={() => handleSizeSelect(size)}
+          >
+            {size}
+          </Button>
+        ))}
+      </ButtonGroup>
+    </div>}<br/>
+      <Button variant="warning" disabled={!selectedSize} onClick={()=>handleAddcart({...product,selectedSize,user:email})}>Add to cart &nbsp;<FaShoppingCart/></Button>&nbsp;&nbsp;
+      <Button  disabled={!selectedSize} onClick={()=>handlecheckOut({...product,selectedSize,user:email,quantity})}>Buy now&nbsp;<IoBagCheck/></Button>
     </div>
   </div> :''}  
+  </div>
+ 
   </>)
 };

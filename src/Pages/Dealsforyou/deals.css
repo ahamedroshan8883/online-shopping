@@ -1,8 +1,10 @@
 .deals-con{
-    overflow: auto;
+    /* overflow: auto; */
     background-color: #FFF5FF;
     /* width: 100vw; */
     margin: 0 auto;
+    padding: 1rem 0;
+    /* overflow-x: hidden; */
     display: flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;

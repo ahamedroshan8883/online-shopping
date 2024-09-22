@@ -8,14 +8,11 @@ import Chip from '@mui/joy/Chip';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/joy/Typography';
 import { Rate } from 'antd';
-import { useDispatch } from 'react-redux';
-import { addproducts } from '../../redux/cartRedux/cartSlice';
 
 export default function ProductCard({ product }) {
-  let dispatch = useDispatch();
-  const handleAddcart = (product) => {
-    dispatch(addproducts(product));
-  };
+  const email = localStorage.getItem('email');
+  
+
 
   return (
     <Card 
@@ -71,7 +68,7 @@ export default function ProductCard({ product }) {
             },'@media (max-width: 400px)': {
               fontSize: '0.5rem',
             }}}>
-          <Link to={`/product/${product.id}`}>{product.title}</Link>
+          <Link to={`/product/${product.id}`}>{product.title.split(" ").slice(0,4).join(" ")}</Link>
         </Typography>
         
         <Typography sx={{ 
@@ -103,7 +100,9 @@ export default function ProductCard({ product }) {
             fontSize: '0.5rem',
           }}}
           endDecorator={
-            <Chip component="span"  size="sm" variant="soft" color="success" sx={{'@media (max-width: 600px)': {
+            <Chip component="span"  size="sm" variant="soft" color="success" sx={{ '@media (max-width: 600px)': {
+              fontSize: '0.5rem',
+            },'@media (max-width: 400px)': {
               fontSize: '0.3rem',
             }}}>
               Lowest price
@@ -117,7 +116,7 @@ export default function ProductCard({ product }) {
             fontSize: '0.5rem',
           },
           '@media (max-width: 400px)': {
-          fontSize: '0.3rem',
+          fontSize: '0.4rem',
           }}}>
           (Only <b>{Math.floor(Math.random() * 20).toString()}</b> left in stock!)
         </Typography>
@@ -143,9 +142,8 @@ export default function ProductCard({ product }) {
               fontSize: 'x-small',
             },
           }}
-          onClick={() => handleAddcart(product)}
         >
-          Add to cart
+          Buy Now
         </Button>
       </CardOverflow>
     </Card>

@@ -18,7 +18,7 @@
     background-color: #f5f7eb;
 }
 .cart-container h4{
-    font-weight: 400;
+    font-weight: bolder;
     /* font-size: 36px; */
     text-align: center;
 }
@@ -28,11 +28,15 @@
     font-size: small;
 }
 .cart-container .titles h3{
+    font-weight: bolder;
     font-size: 14px;
-    font-weight: 400;
     text-transform: uppercase;
 }
-
+.cartItems{
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: none;
+}
 .cartItem,.cart-container .titles{
     display: grid;
     align-items: center;
@@ -53,7 +57,10 @@
 .cartItem .cart-product{
     display: flex;
 }
-.cartItem div,.cartItem .cart-product h6{
+.cartItem div,.cartItem .cart-product .link{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
     font-size: small;
 }
 .cartItem .cart-product button{
@@ -90,6 +97,11 @@
 .cart-checkout button{
     font-size: small !important;
     padding: 5px !important;
+}
+
+.cartItem .cart-product button{
+    display: flex !important;
+    justify-content: center !important;
 }
 .cart-checkout .totalammount{
     display:flex;
@@ -129,7 +141,7 @@
 
 @media screen and (max-width:800px){
     .cart-container{
-        width: 80vw;
+        width: 90vw;
     }
     .cartItem .cart-product img{
         width: 70px;
@@ -142,10 +154,13 @@
 }
 @media screen and (max-width:500px) {
     .cart-container{
-        width: 90vw;
+        width: 85vw;
     }
     .cart-container h2{
         font-size: medium;
+    }
+    .cartItems{
+        height:50vh;
     }
     .cart-empty{
         width: 100%;
@@ -157,24 +172,34 @@
         font-size: small;
         width: 100%;
     }
-    h6,.cart-product-price,.cart-product-quantity,.product-totalprice{
-        font-size: x-small;
+    .cart-product-price,.cart-product-quantity,.product-totalprice{
+        font-size:  x-small;
     }
     .cart-container .titles h3{
-        font-size: small;
+        font-size: x-small;
     }
     .cartItem .cart-product img{
         width: 50px;
         height: 50px;
     }
     .cartItem .cart-product button{
+        display: flex;
+        justify-content: center !important;
         font-size: xx-small !important;
         padding: 5px !important;
+        margin-top: 5px !important;
+    }
+    .cartItem .product-size  button{
+        font-size: 5px !important;
+        padding: 3px !important;
     }
     .cart-checkout .totalammount span{
         font-size: small;
     }
-    .continue-shopping a,.start-shopping a{
-        font-size: small;
+    .continue-shopping a,.start-shopping a,.cartItem div,.cartItem span,.cartItem .cart-product .link{
+        font-size: x-small;
+    }
+    .product-size .btn{
+        font-size: x-small !important;
     }
 } 

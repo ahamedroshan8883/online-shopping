@@ -1,0 +1,22 @@
+.footer{
+    background-color: #f5f7eb;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+.contact-det,.copyRights{
+    font-weight: bold;
+    font-size: small;
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+@media screen and (max-width:500px){
+    .contact-det{
+        font-size: x-small;
+    }
+    .copyRights{
+        font-size: x-small;
+    }
+}
