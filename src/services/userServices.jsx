@@ -1,9 +1,9 @@
 import axios from 'axios'
 const login = (user)=>{
-    return axios.post('http://localhost:8081/ARA/signin',user);
+    return axios.post('http://backend-node-2-uhkv.onrender.com/ARA/signin',user);
 }
 const signup = (user)=>{
-    return axios.post(' http://localhost:8081/ARA/signup',user)
+    return axios.post('http://backend-node-2-uhkv.onrender.com/ARA/signup',user)
 }
 const userServices ={
     signup,
