@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Front-end/static/css/main.c54acffb.css",
-    "main.js": "/Front-end/static/js/main.855d6071.js",
-    "static/js/453.842e1dbc.chunk.js": "/Front-end/static/js/453.842e1dbc.chunk.js",
-    "static/media/homepage-banner-with-bg-removebg-preview.png": "/Front-end/static/media/homepage-banner-with-bg-removebg-preview.24e598fbd447e68aaee5.png",
-    "index.html": "/Front-end/index.html",
-    "main.c54acffb.css.map": "/Front-end/static/css/main.c54acffb.css.map",
-    "main.855d6071.js.map": "/Front-end/static/js/main.855d6071.js.map",
-    "453.842e1dbc.chunk.js.map": "/Front-end/static/js/453.842e1dbc.chunk.js.map"
+    "main.css": "/online-shopping/static/css/main.c528440e.css",
+    "main.js": "/online-shopping/static/js/main.62d7d941.js",
+    "static/js/453.842e1dbc.chunk.js": "/online-shopping/static/js/453.842e1dbc.chunk.js",
+    "static/media/homepage-banner-with-bg-removebg-preview.png": "/online-shopping/static/media/homepage-banner-with-bg-removebg-preview.24e598fbd447e68aaee5.png",
+    "index.html": "/online-shopping/index.html",
+    "main.c528440e.css.map": "/online-shopping/static/css/main.c528440e.css.map",
+    "main.62d7d941.js.map": "/online-shopping/static/js/main.62d7d941.js.map",
+    "453.842e1dbc.chunk.js.map": "/online-shopping/static/js/453.842e1dbc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c54acffb.css",
-    "static/js/main.855d6071.js"
+    "static/css/main.c528440e.css",
+    "static/js/main.62d7d941.js"
   ]
 }
