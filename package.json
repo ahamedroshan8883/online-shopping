@@ -60,5 +60,6 @@
   },
   "overrides": {
     "autoprefixer": "10.4.5"
-  }
+  },
+  "proxy": "https://backend-node-2-uhkv.onrender.com" 
 }

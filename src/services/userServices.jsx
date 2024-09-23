@@ -1,12 +1,51 @@
-import axios from 'axios'
-const login = (user)=>{
-    return axios.post('https://backend-node-2-uhkv.onrender.com/ARA/signin',user);
-}
-const signup = (user)=>{
-    return axios.post('https://backend-node-2-uhkv.onrender.com/ARA/signup',user)
-}
-const userServices ={
-    signup,
-    login
-}
+import axios from 'axios';
+
+const login = async (user) => {
+  try {
+    const response = await axios.post('https://backend-node-2-uhkv.onrender.com/ARA/signin', user, {
+        headers: {
+          'Content-Type': 'application/json', // Match the header setup in Postman
+          // 'Authorization': 'Bearer token',  // If you need a token or other headers
+        } // 'Authorization': 'Bearer token',  // If you need a token or other headers
+    });
+    return response;
+  } catch (error) {
+    console.error('Error during login:', error);
+    if (error.response) {
+      // The request was made and the server responded with a status code outside of the 2xx range
+      console.error('Response data:', error.response.data);
+      console.error('Response status:', error.response.status);
+      console.error('Response headers:', error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error('Request data:', error.request);
+    } else {
+      // Something else happened in setting up the request
+      console.error('Error message:', error.message);
+    }
+    throw error; // Re-throwing the error for further handling if needed
+  }
+};
+
+const signup = async (user) => {
+  try {
+    const response = await axios.post('https://backend-node-2-uhkv.onrender.com/ARA/signup', user, {
+        headers: {
+          'Content-Type': 'application/json', // Match the header setup in Postman
+          // 'Authorization': 'Bearer token',  // If you need a token or other headers
+        } // 'Authorization': 'Bearer token',  // If you need a token or other headers
+    });;
+    return response.data;
+  } catch (error) {
+    console.error('Error during signup:', error);
+    // Similar error-handling logic as above
+    throw error;
+  }
+};
+
+const userServices = {
+  signup,
+  login
+};
+
 export default userServices;

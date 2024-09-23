@@ -44,7 +44,7 @@ export default function Login({setUsername}){
     console.log(Errors);
     if(valid){
           validateUser(user);
-          setUserInput({email:"",password:""})
+          
     }
   }
 
@@ -60,10 +60,12 @@ export default function Login({setUsername}){
         localStorage.setItem('email',userData.email)
         localStorage.setItem('username',userData.username)
         setUsername(localStorage.getItem('username'));
-        navigate('/')
+        navigate('/');
+          setUserInput({email:"",password:""})
         }   
     }catch(error){
       console.log(error);
+      return error;
     }
   } 
 
