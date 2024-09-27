@@ -45,6 +45,7 @@ export default function ProfilePage() {
         toast.success(response.data);
       } catch (error) {
         console.log(error);
+        toast.error("Network Error");
       }
     } else {
       console.log("Form validation failed.");

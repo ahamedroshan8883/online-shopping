@@ -48,7 +48,7 @@ const EditProfile = async(user,details)=>{
     const response = await axios.post(`https://backend-node-2-uhkv.onrender.com/ARA/EditProfile/${user}`,details);
     console.log(response);
   }catch(error){
-    return error;
+    throw error;
   }
 }
 
