@@ -9,6 +9,7 @@ import cartServices from "../../services/cartServices";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { OrderItemsCheckout } from "../../redux/ReduxForOrder/OrderItemSlice";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 export default function Productviews(){
     let id = useParams();
@@ -19,14 +20,16 @@ export default function Productviews(){
     let[quantity,setQuantity] =useState(1);
     const handleAddcart = async(product)=>{
       console.log(product);
-      
       try{
         const response = await cartServices.AddCartItem_IncQun(product);
         console.log(response);
         console.log(product);
+        if(response.status==200){
+          toast.success(response.data);
+        }
       }catch(error){
         console.log(error);
-        
+        toast.error('Networ Error');
       }
     }
     const ProductFetch = async (id)=>{
@@ -63,6 +66,16 @@ export default function Productviews(){
         ProductFetch(id)
     },[id])
   return (<>
+  <ToastContainer
+    position="top-right"
+    autoClose={5000}
+   hideProgressBar={false}
+   closeOnClick
+   rtl={false}
+   pauseOnHover
+   theme="colored"
+   transition={Flip} // Corrected this part
+  />
     <Button variant="danger" onClick={()=>window.history.back()} style={{margin:'10px',position:"absolute",left:"5px",top:"70px"}}>
       <FaArrowLeft ></FaArrowLeft>&nbsp;Back</Button>
   <div className="ProductView">

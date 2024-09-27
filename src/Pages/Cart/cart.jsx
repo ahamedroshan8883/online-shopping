@@ -10,6 +10,8 @@ import cartServices from "../../services/cartServices";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { OrderItemsCheckout } from "../../redux/ReduxForOrder/OrderItemSlice";
+import {ToastContainer,toast, Flip} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 export default function Cart(){
     let [products,setProducts] = useState([]);
@@ -41,10 +43,10 @@ export default function Cart(){
         if(cart){
           setProducts(cart.data.products);
           console.log(products);
-          
           setCart(cart.data); 
         }       
       }catch(error){
+        toast.error('Network Error');
         console.log(error);
       }
       }
@@ -76,6 +78,16 @@ export default function Cart(){
     }, []);  
   return (
     <>
+    <ToastContainer
+   position="top-right"
+   autoClose={5000}
+   hideProgressBar={false}
+   closeOnClick
+   rtl={false}
+   pauseOnHover
+   theme="colored"
+   transition={Flip} // Corrected this part
+ />
     <div className="cart-body">
         <div className="cart-container">
           <h4>Shopping cart</h4>

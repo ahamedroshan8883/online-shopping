@@ -73,7 +73,7 @@ export default function Signup(){
   <div id="Signup-form">
     <div className="Signup-con">
         <h3>Signup</h3>
-        <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
+      <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
       <Form.Group className="mt-1" controlId="formGroupUsername">
         <Form.Label>Username</Form.Label>
         <Form.Control type="text" name="username" placeholder="Enter name" value={userInput.username} onChange={handlechanges}/>

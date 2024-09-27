@@ -12,7 +12,9 @@ import Cart from './Pages/Cart/Cart';
 import OrderAcceptedPage from './Pages/OrderAcceptedPage/OrderAcceptedPage';
 import Categories from './Pages/Categories/Categories';
 import DeliveryAddressFrom from './Pages/DeliveryAddFrom/DeliveryAddressForm';
-import { useDispatch } from 'react-redux';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
+
+
 function App() {
   let[userName,setUsername] = useState('');
   useEffect(()=>{
@@ -35,6 +37,7 @@ function App() {
         <Route path="/Cart" element={<Cart></Cart>}></Route>
         <Route path="/Shipping" element={<DeliveryAddressFrom></DeliveryAddressFrom>}></Route>
         <Route path="/delivery" element={<OrderAcceptedPage></OrderAcceptedPage>}></Route>
+        <Route path="/profile/:email" element={<ProfilePage></ProfilePage>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

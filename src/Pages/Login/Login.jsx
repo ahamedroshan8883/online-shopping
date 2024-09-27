@@ -4,6 +4,7 @@ import "../Login/login.css"
 import Button from 'react-bootstrap/Button';
 import userServices from "../../services/userServices";
 import {Link, useNavigate} from "react-router-dom";
+import { Flip, toast, ToastContainer } from "react-toastify";
 
 
 export default function Login({setUsername}){
@@ -64,8 +65,12 @@ export default function Login({setUsername}){
           setUserInput({email:"",password:""})
         }   
     }catch(error){
-      console.log(error);
-      return error;
+      if(error.response){
+        toast.error(error.response.data);
+      }
+      toast.error("NetWork Error");
+      console.log(error.response);
+      
     }
   } 
 
@@ -75,6 +80,16 @@ export default function Login({setUsername}){
     return JSON.parse(window.atob(base64Url));
   }
   return (<>
+  <ToastContainer
+   position="top-right"
+   autoClose={5000}
+   hideProgressBar={false}
+   closeOnClick
+   rtl={false}
+   pauseOnHover
+   theme="colored"
+   transition={Flip} // Corrected this part
+ />
   <div id="login-form">
   <div className="login-con">
   <h1 >Login</h1>

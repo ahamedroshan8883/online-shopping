@@ -34,7 +34,7 @@ const signup = async (user) => {
           'Content-Type': 'application/json', // Match the header setup in Postman
           // 'Authorization': 'Bearer token',  // If you need a token or other headers
         } // 'Authorization': 'Bearer token',  // If you need a token or other headers
-    });;
+    });
     return response.data;
   } catch (error) {
     console.error('Error during signup:', error);
@@ -43,9 +43,19 @@ const signup = async (user) => {
   }
 };
 
+const EditProfile = async(user,details)=>{
+  try{
+    const response = await axios.post(`https://backend-node-2-uhkv.onrender.com/ARA/EditProfile/${user}`,details);
+    console.log(response);
+  }catch(error){
+    return error;
+  }
+}
+
 const userServices = {
   signup,
-  login
+  login,
+  EditProfile
 };
 
 export default userServices;

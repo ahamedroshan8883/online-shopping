@@ -140,13 +140,13 @@ export default function Navbar({ userName }) {
             </Link>
           )}
           <div className="userList">
+            <Link to={`/profile/${email}`} className="navlistItem">
+              <FaUser />
+              &nbsp;Profile
+            </Link>
             <Link to="Logout" className="navlistItem">
               <RiLogoutBoxFill />
               &nbsp;Logout
-            </Link>
-            <Link to="" className="navlistItem">
-              <FaUser />
-              &nbsp;Profile
             </Link>
           </div>
         </div>
