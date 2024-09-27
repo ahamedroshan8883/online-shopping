@@ -9,6 +9,7 @@ import { MdEdit } from "react-icons/md";
 import { InputGroup } from "react-bootstrap";
 import userServices from "../../services/userServices";
 import { Flip, toast, ToastContainer } from "react-toastify";
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function ProfilePage() {
   let { email } = useParams();
@@ -18,7 +19,7 @@ export default function ProfilePage() {
   
   // Editable state to toggle input fields
   let [editable, setEditable] = useState({
-    fullname: false,
+    user: false,
     mobile: false,
     gender: false
   });
@@ -39,6 +40,12 @@ export default function ProfilePage() {
         const response = await userServices.EditProfile(email, profileDet); // Call edit profile service
         console.log(response);
         toast.success(response.data);
+        setEditable({
+          user: false,
+          mobile: false,
+          gender: false
+        });
+
       } catch (error) {
         console.log(error);
         toast.error("Network Error");
@@ -52,11 +59,21 @@ export default function ProfilePage() {
       const response = await userServices.getProfileByemail(email);
       // console.log(response);
       
-      if(response.status==200){
+      if(response.status==200||profileDet=={}){
         setProfileDet(response.data);
       }
       console.log(profileDet);
-      
+    }catch(error){
+      console.log(error);
+      toast.error("Network Error");
+    }
+  }
+  const handleDeleteAccount = async(email)=>{
+    try{
+      const response = await userServices.deleteProfileByemail(email);
+      if(response.status==200){
+        toast.success(response.data);
+      }
     }catch(error){
       console.log(error);
       toast.error("Network Error");
@@ -84,15 +101,15 @@ export default function ProfilePage() {
               <Form.Label>FullName</Form.Label>
               <InputGroup>
                 <Form.Control
-                  disabled={!editable.fullname}
-                  style={!editable.fullname ? { cursor: "not-allowed" } : { cursor: "auto" }}
+                  disabled={!editable.username}
+                  style={!editable.username ? { cursor: "not-allowed" } : { cursor: "auto" }}
                   type="text"
-                  name="fullname"  
-                  value={profileDet.fullname} 
+                  name="username"  
+                  value={profileDet.username} 
                   placeholder="Enter Fullname"
                   onChange={handleChange}  
                 />
-                <Button variant="primary" onClick={() => setEditable({ ...editable, fullname: true })}>
+                <Button variant="primary" onClick={() => setEditable({ ...editable, username: true })}>
                   <MdEdit />
                 </Button>
               </InputGroup>
@@ -155,6 +172,8 @@ export default function ProfilePage() {
               <Link to='/online-shopping'><Button variant="danger">Back</Button></Link>
             </div>
           </Form>
+          <hr />
+          <Link onClick={()=>handleDeleteAccount(email)} style={{textDecoration:"none",color:"red",display:"flex",justifyContent:"space-between"}}>Delete account<FaTrashAlt></FaTrashAlt></Link>
         </div>
       </div>
     </>

@@ -46,7 +46,7 @@ const signup = async (user) => {
 const EditProfile = async(user,details)=>{
   try{
     const response = await axios.post(`https://backend-node-2-uhkv.onrender.com/ARA/EditProfile/${user}`,details);
-    console.log(response);
+    return response;
   }catch(error){
     throw error;
   }
@@ -61,11 +61,22 @@ const getProfileByemail = async(user)=>{
     throw error;
   }
 }
+
+const deleteProfileByemail = async(user)=>{
+  try{
+    const response = await axios.get(`https://backend-node-2-uhkv.onrender.com/ARA/deleteProfile/${user}`);
+    console.log(response);
+    return response;
+  }catch(error){
+    throw error;
+  }
+}
 const userServices = {
   signup,
   login,
   EditProfile,
-  getProfileByemail
+  getProfileByemail,
+  deleteProfileByemail
 };
 
 export default userServices;
