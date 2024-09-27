@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../ProfilePage/ProfilePage.css";
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
@@ -17,6 +17,7 @@ export default function ProfilePage() {
   // Default profile details state
   let [profileDet, setProfileDet] = useState({});
   
+  let navigate = useNavigate();
   // Editable state to toggle input fields
   let [editable, setEditable] = useState({
     user: false,
@@ -73,6 +74,7 @@ export default function ProfilePage() {
       const response = await userServices.deleteProfileByemail(email);
       if(response.status==200){
         toast.success(response.data);
+        navigate('/logout');
       }
     }catch(error){
       console.log(error);

@@ -64,7 +64,7 @@ const getProfileByemail = async(user)=>{
 
 const deleteProfileByemail = async(user)=>{
   try{
-    const response = await axios.get(`https://backend-node-2-uhkv.onrender.com/ARA/deleteProfile/${user}`);
+    const response = await axios.delete(`https://backend-node-2-uhkv.onrender.com/ARA/deleteProfile/${user}`);
     console.log(response);
     return response;
   }catch(error){
