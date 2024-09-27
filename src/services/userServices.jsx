@@ -52,10 +52,20 @@ const EditProfile = async(user,details)=>{
   }
 }
 
+const getProfileByemail = async(user)=>{
+  try{
+    const response = await axios.get(`https://backend-node-2-uhkv.onrender.com/ARA/getProfile/${user}`);
+    console.log(response);
+    return response;
+  }catch(error){
+    throw error;
+  }
+}
 const userServices = {
   signup,
   login,
-  EditProfile
+  EditProfile,
+  getProfileByemail
 };
 
 export default userServices;

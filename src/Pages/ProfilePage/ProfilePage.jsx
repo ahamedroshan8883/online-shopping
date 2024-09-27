@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../ProfilePage/ProfilePage.css";
 import Col from 'react-bootstrap/Col';
@@ -14,11 +14,7 @@ export default function ProfilePage() {
   let { email } = useParams();
   
   // Default profile details state
-  let [profileDet, setProfileDet] = useState({
-    fullname: localStorage.getItem("fullname"),
-    mobile: localStorage.getItem("mobileno"),
-    gender: localStorage.getItem("gender"),
-  });
+  let [profileDet, setProfileDet] = useState({});
   
   // Editable state to toggle input fields
   let [editable, setEditable] = useState({
@@ -51,7 +47,24 @@ export default function ProfilePage() {
       console.log("Form validation failed.");
     }
   };
-
+  const fetchProfile = async(email)=>{
+    try{
+      const response = await userServices.getProfileByemail(email);
+      // console.log(response);
+      
+      if(response.status==200){
+        setProfileDet(response.data);
+      }
+      console.log(profileDet);
+      
+    }catch(error){
+      console.log(error);
+      toast.error("Network Error");
+    }
+  }
+  useEffect(()=>{
+    fetchProfile(email);
+  },[])
   return (
     <>
     <ToastContainer
