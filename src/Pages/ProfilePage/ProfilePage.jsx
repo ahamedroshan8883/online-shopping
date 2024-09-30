@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "../ProfilePage/ProfilePage.css";
-import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import { MdEdit } from "react-icons/md";
 import { InputGroup } from "react-bootstrap";
 import userServices from "../../services/userServices";
 import { Flip, toast, ToastContainer } from "react-toastify";
 import { FaTrashAlt } from "react-icons/fa";
+import maleImg from "../../assets/male.jpg"
+import femaleImg from "../../assets/female.jpg"
+import Swal from 'sweetalert2';
 
 export default function ProfilePage() {
   let { email } = useParams();
@@ -69,18 +70,63 @@ export default function ProfilePage() {
       toast.error("Network Error");
     }
   }
-  const handleDeleteAccount = async(email)=>{
-    try{
-      const response = await userServices.deleteProfileByemail(email);
-      if(response.status==200){
-        toast.success(response.data);
-        navigate('/logout');
+  const handleDeleteAccount = (email)=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try{
+          const response = userServices.deleteProfileByemail(email);
+          if(response.status==200){
+            
+            toast.success(response.data);
+            navigate('/logout');
+          }
+        }catch(error){
+          console.log(error);
+          toast.error("Network Error");
+        }
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error"
+        });
       }
-    }catch(error){
-      console.log(error);
-      toast.error("Network Error");
-    }
+    });
   }
+  const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(251, 192, 147,0.5)',  // Semi-transparent overlay
+    zIndex: 1
+  };
+  console.log(profileDet);
+  
   useEffect(()=>{
     fetchProfile(email);
   },[])
@@ -99,6 +145,16 @@ export default function ProfilePage() {
       <div id="profile-page">
         <div className="profile-con">
           <Form onSubmit={handleSubmit}> {/* Attach handleSubmit to form submit */}
+          <div className="gender-avatar">
+            <div className="male-ava">
+              <img src={maleImg} title="male"  alt="Male" width="100px" height="100px" onClick={()=>setProfileDet({...profileDet,gender:"male"})}/>
+              <div style={profileDet.gender==="male"?overlayStyle:{display:"none"}}></div>
+            </div>
+            <div className="female-ava">
+              <img src={femaleImg} title="female" alt="Female" width="100px"  height="100px" onClick={()=>setProfileDet({...profileDet,gender:"female"})}/>
+              <div style={profileDet.gender==="female"?overlayStyle:{display:"none"}}></div>
+            </div>
+          </div>
             <Form.Group className="mb-3" controlId="formGroupFullname">
               <Form.Label>FullName</Form.Label>
               <InputGroup>
@@ -134,41 +190,6 @@ export default function ProfilePage() {
                 </Button>
               </InputGroup>
             </Form.Group>
-
-            <InputGroup>
-              <Row>
-                <Col>
-                  <Form.Check
-                    disabled={!editable.gender}
-                    style={!editable.gender ? { cursor: "not-allowed" } : { cursor: "auto" }}
-                    inline
-                    label="Male"
-                    name="gender"
-                    value="male"
-                    type="radio"
-                    checked={profileDet.gender === "male"}  
-                    onChange={handleChange}  
-                  />
-                </Col>
-                <Col>
-                  <Form.Check
-                    disabled={!editable.gender}
-                    style={!editable.gender ? { cursor: "not-allowed" } : { cursor: "auto" }}
-                    inline
-                    label="Female"
-                    name="gender"
-                    value="female"
-                    type="radio"
-                    checked={profileDet.gender === "female"}  
-                    onChange={handleChange}  
-                  />
-                </Col>
-              </Row>
-              <Button variant="primary" onClick={() => setEditable({ ...editable, gender: true })}>
-                <MdEdit />
-              </Button>
-            </InputGroup>
-
             <div className="btnCon">
               <Button variant="success" type="submit">Submit</Button>
               <Link to='/online-shopping'><Button variant="danger">Back</Button></Link>

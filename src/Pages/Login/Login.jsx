@@ -5,10 +5,15 @@ import Button from 'react-bootstrap/Button';
 import userServices from "../../services/userServices";
 import {Link, useNavigate} from "react-router-dom";
 import { Flip, toast, ToastContainer } from "react-toastify";
-
+import { MdVisibility } from "react-icons/md";
+import { MdVisibilityOff } from "react-icons/md";
+import { InputGroup } from "react-bootstrap";
 
 export default function Login({setUsername}){
   let [userInput,setUserInput] = useState({email:"",password:""});
+
+  //For visible password type 
+  let [visiblePswd,setVisiblePswd] = useState(false);
   let [Errors,setErrors] = useState({email:"",password:""});
   let[isSubmitted,setIssubmitted] = useState(false);
   let navigate = useNavigate();
@@ -99,10 +104,16 @@ export default function Login({setUsername}){
           <Form.Control type="text" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
         </Form.Group>
         {isSubmitted && Errors.email? <small style={{color:"red",fontWeight:600}}>{Errors.email}</small>:''}
-        <Form.Group className="mt-2" controlId="formGroupPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter your password" name="password" value={userInput.password} onChange={handleChanges}/>
-        </Form.Group>
+          <Form.Group className="mt-2" controlId="formGroupPassword">
+            <Form.Label>Password</Form.Label>
+              <InputGroup>
+                <Form.Control type={visiblePswd?"text":"password"} placeholder="Enter your password" name="password" value={userInput.password} onChange={handleChanges}/>
+                <Button variant="primary" onClick={() => setVisiblePswd(!visiblePswd)}>
+                  {!visiblePswd?<MdVisibility></MdVisibility>:<MdVisibilityOff></MdVisibilityOff>}
+                </Button>
+              </InputGroup>
+            </Form.Group>
+          
         {isSubmitted && Errors.password? <small className="errormgs" style={{color:"red",fontWeight:600}}>{Errors.password}</small>:''}
         <div className="button">
           <Button variant="primary" type="submit">Login</Button>

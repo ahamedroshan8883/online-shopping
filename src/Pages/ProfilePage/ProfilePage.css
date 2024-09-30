@@ -7,7 +7,7 @@
 .profile-con{
     border-radius: 5px;
     padding: 1.5rem 1rem;
-    width : 50vw;
+    width : 70vw;
     background-color: #FFF5FF;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -16,4 +16,27 @@
     display: flex;
     justify-content: flex-end; /* Aligns the button to the right */
     gap: 1rem;
+}
+.gender-avatar{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.gender-avatar div{
+    clip-path:circle(50%);
+    cursor: pointer;
+}
+
+@media screen and (max-width:500px) {
+    .gender-avatar div img{
+        height: 50px;
+        width: 50px;
+    }
+
+    a{
+        font-size: small;
+    }
+    .profile-con{
+        width : 90vw;
+    }
 }

@@ -6,6 +6,11 @@ import Row from 'react-bootstrap/Row';
 import {Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import userServices from "../../services/userServices";
+import { Flip, toast, ToastContainer } from "react-toastify";
+import Swal from 'sweetalert2';
+import { MdVisibility } from "react-icons/md";
+import { MdVisibilityOff } from "react-icons/md";
+import { InputGroup } from "react-bootstrap";
 
 export default function Signup(){
     const Initialvalue = {
@@ -17,6 +22,9 @@ export default function Signup(){
         gender:"male",
         role:"user"
     }
+
+      //For visible password type 
+    let [visiblePswd,setVisiblePswd] = useState(false);
     let[userInput,setUserInput] = useState(Initialvalue);
     let [isSubmitted,setIssubmitted] = useState(false);
     let[Errors,setErrors] = useState({
@@ -63,13 +71,37 @@ export default function Signup(){
         validate(key,value);
       })
       console.log(valid);
-      if(valid){
-        const response = await userServices.signup(userInput);
-        setUserInput(Initialvalue);
-        console.log(response.data);
+      try{
+        if(valid){
+          const response = await userServices.signup(userInput);
+          if(response.status==201){
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your account has been registered",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            setUserInput(Initialvalue);
+          }
+          console.log(response);
+        }
+      }catch(error){
+        console.error(error);
+        toast.error("Network Error");
       }
     }
   return (<>
+  <ToastContainer
+   position="top-right"
+   autoClose={5000}
+   hideProgressBar={false}
+   closeOnClick
+   rtl={false}
+   pauseOnHover
+   theme="colored"
+   transition={Flip} // Corrected this part
+ />
   <div id="Signup-form">
     <div className="Signup-con">
         <h3>Signup</h3>
@@ -93,14 +125,19 @@ export default function Signup(){
       <Col>
         <Form.Group className="mt-1" controlId="formGroupPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Enter password" value={userInput.password} onChange={handlechanges}/>
+            <InputGroup>
+            <Form.Control type={visiblePswd?"text":"password"} name="password" placeholder="Enter password" value={userInput.password} onChange={handlechanges}/>
+              <Button variant="primary" onClick={() => setVisiblePswd(!visiblePswd)}>
+                  {!visiblePswd?<MdVisibility></MdVisibility>:<MdVisibilityOff></MdVisibilityOff>}
+                </Button>
+            </InputGroup>
         </Form.Group>
       {isSubmitted && Errors.password ? <small className="errorMessage">{Errors.password}</small>:''}
       </Col>
       <Col>
         <Form.Group className="mt-1" controlId="formGroupPassword">
             <Form.Label>Confirm password</Form.Label>
-            <Form.Control type="password" name="confirmpassword" value={userInput.confirmpassword} onChange={handlechanges} placeholder="Confirm password" />
+            <Form.Control type={visiblePswd?"text":"password"} name="confirmpassword" value={userInput.confirmpassword} onChange={handlechanges} placeholder="Confirm password" />
         </Form.Group>
       {isSubmitted && Errors.confirmpassword ? <small className="errorMessage">{Errors.confirmpassword}</small>:''}
       </Col>
@@ -108,8 +145,8 @@ export default function Signup(){
       <Form.Check inline label="Male" className="mt-1" checked name="gender" value={userInput.gender} type="radio"onChange={handlechanges}/>
       <Form.Check inline label="Female" name="gender" value={userInput.gender} type="radio"onChange={handlechanges}/>
       <div className="button m-1">
-          <Button variant="primary" type="submit">Signup</Button>{' '}
-          <Link to='/'><Button variant="danger">Back</Button></Link>{' '}
+          <Button variant="primary" type="submit">Signup</Button>
+          <Link to='/'><Button variant="danger">Back</Button></Link>
       </div>
     </Form>
     </div>

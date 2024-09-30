@@ -13,6 +13,7 @@ import OrderAcceptedPage from './Pages/OrderAcceptedPage/OrderAcceptedPage';
 import Categories from './Pages/Categories/Categories';
 import DeliveryAddressFrom from './Pages/DeliveryAddFrom/DeliveryAddressForm';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
+import Orders from './Pages/OrderedItem/Orders';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/Shipping" element={<DeliveryAddressFrom></DeliveryAddressFrom>}></Route>
         <Route path="/delivery" element={<OrderAcceptedPage></OrderAcceptedPage>}></Route>
         <Route path="/profile/:email" element={<ProfilePage></ProfilePage>}></Route>
+        <Route path="/orders/:email" element={<Orders></Orders>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

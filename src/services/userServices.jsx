@@ -35,7 +35,7 @@ const signup = async (user) => {
           // 'Authorization': 'Bearer token',  // If you need a token or other headers
         } // 'Authorization': 'Bearer token',  // If you need a token or other headers
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Error during signup:', error);
     // Similar error-handling logic as above

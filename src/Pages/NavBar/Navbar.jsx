@@ -12,6 +12,7 @@ import { FaUser } from "react-icons/fa";
 import { Badge } from "@mui/material";
 import { GiHamburgerMenu } from "react-icons/gi";
 import cartServices from "../../services/cartServices";
+import { GiCardboardBoxClosed } from "react-icons/gi";
 
 export default function Navbar({ userName }) {
   let [products, setProducts] = useState([]);
@@ -143,6 +144,10 @@ export default function Navbar({ userName }) {
             <Link to={`/profile/${email}`} className="navlistItem">
               <FaUser />
               &nbsp;Profile
+            </Link>
+            <Link to={`/orders/${email}`} className="navlistItem">
+              <GiCardboardBoxClosed />
+              &nbsp;Orders
             </Link>
             <Link to="Logout" className="navlistItem">
               <RiLogoutBoxFill />
