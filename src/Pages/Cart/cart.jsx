@@ -37,13 +37,13 @@ export default function Cart(){
 
     const fetchCart = async (email)=>{
       try{
-        const cart = await cartServices.getCart(email);
-        console.log(email);
+        const {data} = await cartServices.getCart(email);
+        console.log(data);
         
-        if(cart){
-          setProducts(cart.data.products);
+        if(data){
+          setProducts(data.products);
           console.log(products);
-          setCart(cart.data); 
+          setCart(data); 
         }       
       }catch(error){
         toast.error('Network Error');

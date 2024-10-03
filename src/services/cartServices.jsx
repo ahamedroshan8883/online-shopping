@@ -32,7 +32,8 @@ const getCart = async(user)=>{
         console.log("email "+user);
         return response;
     }catch(error){
-        return error;
+        console.log(error);
+        throw error;
     }
 }
 

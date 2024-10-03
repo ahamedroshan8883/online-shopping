@@ -72,8 +72,9 @@ export default function Login({setUsername}){
     }catch(error){
       if(error.response){
         toast.error(error.response.data);
+      }else{
+        toast.error("NetWork Error");
       }
-      toast.error("NetWork Error");
       console.log(error.response);
       
     }
@@ -100,7 +101,7 @@ export default function Login({setUsername}){
   <h1 >Login</h1>
   <Form onSubmit={(e)=>{handleSubmit(e,userInput)}}>
         <Form.Group className="mt-2" controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Email ID</Form.Label>
           <Form.Control type="text" placeholder="Enter your email" name="email" value={userInput.email} onChange={handleChanges}/>
         </Form.Group>
         {isSubmitted && Errors.email? <small style={{color:"red",fontWeight:600}}>{Errors.email}</small>:''}

@@ -163,7 +163,7 @@ export default function ProfilePage() {
                   style={!editable.username ? { cursor: "not-allowed" } : { cursor: "auto" }}
                   type="text"
                   name="username"  
-                  value={profileDet.username} 
+                  value={profileDet.username || ''} 
                   placeholder="Enter Fullname"
                   onChange={handleChange}  
                 />
@@ -181,7 +181,7 @@ export default function ProfilePage() {
                   style={!editable.mobile ? { cursor: "not-allowed" } : { cursor: "auto" }}
                   type="text"
                   name="mobile"  
-                  value={profileDet.mobile}  
+                  value={profileDet.mobile || ''}  
                   placeholder="Mobile Number"
                   onChange={handleChange}  
                 />
