@@ -8,6 +8,7 @@ import { Flip, toast, ToastContainer } from "react-toastify";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
 import { InputGroup } from "react-bootstrap";
+import Swal from 'sweetalert2';
 
 export default function Login({setUsername}){
   let [userInput,setUserInput] = useState({email:"",password:""});
@@ -58,17 +59,35 @@ export default function Login({setUsername}){
     try{
         const response = await userServices.login(user)
         console.log(response);
+
+        // Login process spinner.
         if(response.status==200){
         const token = response.data
         let userData = parseJWT(token);
         console.log(userData);
         localStorage.setItem('token',token);
-        localStorage.setItem('email',userData.email)
+        localStorage.setItem('email',userData.email)  
         localStorage.setItem('username',userData.username)
         setUsername(localStorage.getItem('username'));
         navigate('/');
-          setUserInput({email:"",password:""})
-        }   
+          // setUserInput({email:"",password:""})
+        }
+        if(!response){
+          Swal.fire({
+            title: "Loggin in!",
+            html: "Please wait for few seconds",
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              Swal.getPopup().querySelector("b");
+            },
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log("I was closed by the timer");
+            }
+          });
+        }
     }catch(error){
       if(error.response){
         toast.error(error.response.data);
