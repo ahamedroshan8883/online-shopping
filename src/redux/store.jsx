@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productReducers from "./reduxAsync/ProductAsyncthunk";
-import OrderReducer from "./ReduxForOrder/OrderItemSlice"
+import OrderReducer from "./ReduxForOrder/OrderItemSlice";
+import CartReducer from "./reduxAsync/CartAsyncThunk";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { thunk } from "redux-thunk";
@@ -16,6 +17,7 @@ export const store = configureStore({
     reducer:{
         productsStore:productReducers,
         OrderReducer: persistedOrderItemReducer,
+        CartStore:CartReducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false, // Disable serialization check if you're using non-serializable values

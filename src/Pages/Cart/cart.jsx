@@ -8,10 +8,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa6";
 import cartServices from "../../services/cartServices";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { OrderItemsCheckout } from "../../redux/ReduxForOrder/OrderItemSlice";
 import {ToastContainer,toast, Flip} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+import { fetchCartAT } from "../../redux/reduxAsync/CartAsyncThunk";
 
 export default function Cart(){
     let [products,setProducts] = useState([]);
@@ -71,10 +72,14 @@ export default function Cart(){
           console.log(error);
         }
       }
+      const cart = useSelector(data=>data.CartStore);
+      console.log(cart);
+      
       useEffect(() => {
         if (email) {
             fetchCart(email);  // Fetch the cart data again when Cart updates or on email change
         }
+        dispatch(fetchCartAT());
     }, []);  
   return (
     <>
