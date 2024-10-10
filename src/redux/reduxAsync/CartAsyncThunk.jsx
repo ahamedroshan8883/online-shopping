@@ -17,7 +17,7 @@ const initialState = {
     error:''
 }
 
-const cartSlice = createSlice({
+const cartReducer = createSlice({
     name:'cart',
     initialState,
     extraReducers:(builder)=>{
@@ -38,4 +38,4 @@ const cartSlice = createSlice({
     }
 });
 
-export default cartSlice.reducer;
+export default cartReducer.reducer;

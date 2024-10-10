@@ -43,3 +43,40 @@
     display: flex;
     justify-content: flex-end;
 }
+
+/* Stylings for Ordere acceptance */
+.Order-details-container{
+    width: 80vw;
+    padding: 10px 20px;
+    background-color: #f5f7eb;
+    /* height: 4rem; */
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.Brand-logo h1{
+    text-align: center;
+    font-family: "Playfair Display", serif;
+}
+.product{
+    padding: 10px 20px;
+    border: 1.5px solid #c6c6c6;
+    border-radius: 5px;
+    width: max-content;
+}
+.product> p{
+    border: 1px solid #b1bdc5;
+    border-radius: 30px;
+    color: #474747;
+    font-weight: 700;
+    width: max-content;
+    padding: 5px 10px;
+    font-size: smaller;
+}
+.product-details{
+    display: flex;
+    flex-direction: row;
+}
+.product-text-details p{
+    margin: 0 10px 0 10px;
+    font-size: smaller;
+}

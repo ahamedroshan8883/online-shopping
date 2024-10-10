@@ -1,17 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useMemo } from "react";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import ShippingServices from "../../services/ShippingServices";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import '../DeliveryAddFrom/DeliveryAddressForm.css'
+import Swal from 'sweetalert2';
+import { cleartOrderItems } from "../../redux/ReduxForOrder/OrderItemSlice";
+import cartServices from "../../services/cartServices";
+import { FaOpencart } from "react-icons/fa";
+import { SiTicktick } from "react-icons/si";
 
 export default function DeliveryAddressForm() {
-    let navigate = useNavigate();
-    
+    let dispatch = useDispatch();
+    const email = localStorage.getItem('email');
     // Memoizing the Redux selector to prevent unnecessary recalculations
     const data = useSelector(state => state.OrderReducer.OrderItems);
     const memoizedData = useMemo(() => data, [data]);
@@ -27,6 +31,9 @@ export default function DeliveryAddressForm() {
         zipcode: "",
         OrderItems: memoizedData
     };
+
+    // For display ordered item after confirm order.
+    let[OrderDetails,SetOrderDetails] = useState({});
 
     let [details, setDetails] = useState(InitialState);
     let [isSubmitted, setIsSubmitted] = useState(false);
@@ -101,21 +108,77 @@ export default function DeliveryAddressForm() {
                 
                 const response = await ShippingServices.ShippingDetailsPost(details);
                 if (response.status === 201) {
-                    navigate('/delivery');
+                    Swal.fire({
+                        title: "Successfully done",
+                        text: "Your order got placed!",
+                        icon: "success"
+                      });
+                    // navigate('/delivery');
                     setDetails(InitialState);
+                    dispatch(cleartOrderItems());
+                    SetOrderDetails(response.data);
+                    // console.log(response.data);
+                    cartServices.clearCart(email);
                 } else {
                     alert(response.data);
                 }
             } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "error occurs",
+                    text: `${error.message}!`,
+                  });
                 console.log(error);
             }
         } else {
             console.log('Validation errors:', Errors);
         }
     };
+    console.log(OrderDetails.OrderItems);
     return (<>
             <div className="Shipping-container">
-                <div className="ShippingForm-con">
+                {OrderDetails != null?<>
+                    <div className="Order-details-container">
+                        <div className="Brand-logo">
+                            <h1>ARA <FaOpencart></FaOpencart></h1>
+                        </div>
+                        <hr />
+                        <div className="delivery-message">
+                            <h5>
+                                <span style={{color:"#4BB543"}}><SiTicktick />&nbsp;</span>
+                                Thank you for your order, {`${OrderDetails.firstname} ${OrderDetails.lastname}`}
+                            </h5>
+                        </div>
+                        <hr />
+                        <div className="shipping-details">
+                            <div><p><strong>{OrderDetails.or}</strong></p></div>
+                            <h6><strong>Shipping info</strong></h6>
+                            <small>{`${OrderDetails.firstname} ${OrderDetails.lastname}`},</small><br />
+                            <small>{OrderDetails.phonenumber},</small><br />
+                            <small>{OrderDetails.address},</small>&nbsp;
+                            <small>{OrderDetails.city},</small><br />
+                            <small>{OrderDetails.state},</small>&nbsp;
+                            <small>{OrderDetails.zipcode}.</small><br />
+                        </div>
+                        <div className="products">
+                            <p><strong>Items</strong></p>
+                            {OrderDetails.OrderItems.products.length>0?
+                            OrderDetails.OrderItems.products.map(product=>
+                                <div className="product">
+                                <p className="arrival-date"><small>Arraives at 18 May</small></p>
+                                <div className="product-details">
+                                    <img src={product.image} alt="" height="40px" width="40px"/>
+                                    <div className="product-text-details">
+                                        <p>{product.title}({product.selectedSize})</p>
+                                        <p>Quantity :<strong>{product.quantity}</strong></p>
+                                    </div>
+                                    <p><strong>{product.price}</strong></p>
+                                </div>
+                            </div>
+                            ):''}
+                        </div>
+                    </div>
+                </>:<div className="ShippingForm-con">
                     <h4>Shipping Details</h4>
                     <p>Only COD (cash on delivery)</p>
                 <Form onSubmit={(e)=>handleSubmit(e,details)}>
@@ -179,7 +242,7 @@ export default function DeliveryAddressForm() {
                     <Link to='/cart'><Button variant="danger" type="">Back</Button></Link>
                 </div>
                 </Form>
-                </div>
+                </div>}
             </div>
         </>)
     };

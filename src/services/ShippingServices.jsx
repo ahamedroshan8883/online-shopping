@@ -1,5 +1,4 @@
 import axios from "axios"
-
 const ShippingDetailsPost = async(details)=>{
     try{
         return axios.post('https://backend-node-2-uhkv.onrender.com/ARA/shipping',details);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../NavBar/Navbar.css";
 import { FaHome } from "react-icons/fa";
 import { RiLoginBoxFill } from "react-icons/ri";
-import { FaShirt } from "react-icons/fa6";
+import { FaOpencart, FaShirt } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { IoBag } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
@@ -61,10 +61,8 @@ export default function Navbar({ userName }) {
     <>
       <nav className="nav-bar">
         <div className="heading">
-          <h2>
             <span className="Brand-name">ARA</span>&nbsp;
-            <span className="subHead">Shopping</span>
-          </h2>
+            <span className="subHead">Shopping  <FaOpencart/></span>
         </div>
         <div className="search-Container">
           <div className="search-bar">

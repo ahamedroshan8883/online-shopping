@@ -17,6 +17,9 @@
     padding: 1rem 1rem;
     background-color: #f5f7eb;
 }
+.cart-container .loading-spinner{
+    text-align: center;
+}
 .cart-container h4{
     font-weight: bolder;
     /* font-size: 36px; */
