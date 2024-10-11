@@ -9,7 +9,7 @@ import cartServices from "../../services/cartServices";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { OrderItemsCheckout } from "../../redux/ReduxForOrder/OrderItemSlice";
-import { ToastContainer, toast, Flip } from "react-toastify";
+import { ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchCartAT } from "../../redux/reduxAsync/CartAsyncThunk";
 import Spinner from 'react-bootstrap/Spinner'; // Import Spinner component
@@ -37,9 +37,9 @@ export default function Cart() {
         dispatch(OrderItemsCheckout(Cart));
     }
 
-    const handleAddProduct_IncQua = async (product) => {
+    const handleIncrementCartItem = async (product) => {
         try {
-            const response = await cartServices.AddCartItem_IncQun(product);
+            const response = await cartServices.increaseCartItem(product);
             console.log(response);
             dispatch(fetchCartAT());
         } catch (error) {
@@ -133,7 +133,7 @@ export default function Cart() {
                                                         <ButtonGroup className="me-2" aria-label="First group">
                                                             <Button variant="secondary" disabled={item.quantity === 1} onClick={() => handleDecrementCartItem({ ...item, user: email })}>-</Button>
                                                             <Button variant="secondary" disabled>{item.quantity}</Button>
-                                                            <Button variant="secondary" onClick={() => handleAddProduct_IncQua({ ...item, user: email })}>+</Button>
+                                                            <Button variant="secondary" onClick={() => handleIncrementCartItem({ ...item, user: email })}>+</Button>
                                                         </ButtonGroup>
                                                     </div>
                                                     <div className="product-totalprice">

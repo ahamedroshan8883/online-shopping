@@ -1,5 +1,5 @@
 import axios from "axios";
-const AddCartItem_IncQun = async (product) => {
+const AddCartItem = async (product) => {
     try {
         const response = await axios.post('https://backend-node-2-uhkv.onrender.com/ARA/AddCartItem', product, {
             // Treat any status code outside of 200-299 as an error
@@ -46,6 +46,14 @@ const decrementCartItem =async(product)=>{
     }
 }
 
+const increaseCartItem =async(product)=>{
+    try{
+        const response = await axios.post('https://backend-node-2-uhkv.onrender.com/ARA/IncreaseItem',product);
+        return response;
+    }catch(error){
+        return error;
+    }
+}
 const removeCartItem = async(product)=>{
     try{
         console.log(product);
@@ -68,5 +76,5 @@ const clearCart =async(user)=>{
     }
 }
 
-const cartServices = {getCart,AddCartItem_IncQun,decrementCartItem,removeCartItem,clearCart};
+const cartServices = {getCart,AddCartItem,increaseCartItem,decrementCartItem,removeCartItem,clearCart};
 export default cartServices;

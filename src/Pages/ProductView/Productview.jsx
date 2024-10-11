@@ -27,7 +27,7 @@ export default function Productviews(){
       }
       console.log(product);
       try{
-        const response = await cartServices.AddCartItem_IncQun(productWithFullDetails);
+        const response = await cartServices.AddCartItem(productWithFullDetails);
         console.log(response);
         console.log(productWithFullDetails);
         if(response.status===200){
