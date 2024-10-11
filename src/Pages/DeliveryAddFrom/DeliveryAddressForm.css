@@ -1,9 +1,9 @@
 .Shipping-container{
-    height: calc(100vh - 4rem);
+    height:100vh;
     /* overflow: hidden; */
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 .ShippingForm-con p,.ShippingForm-con h4{
     text-align: center;
@@ -48,6 +48,7 @@
 .Order-details-container{
     width: 80vw;
     padding: 10px 20px;
+    margin: 1rem auto;
     background-color: #f5f7eb;
     /* height: 4rem; */
     border-radius: 5px;
@@ -71,6 +72,11 @@
     width: max-content;
     padding: 5px 10px;
     font-size: smaller;
+}
+.products{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 .product-details{
     display: flex;

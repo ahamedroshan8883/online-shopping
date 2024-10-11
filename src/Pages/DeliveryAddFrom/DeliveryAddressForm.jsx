@@ -137,7 +137,7 @@ export default function DeliveryAddressForm() {
     console.log(OrderDetails.OrderItems);
     return (<>
             <div className="Shipping-container">
-                {OrderDetails != null?<>
+                {OrderDetails.OrderItems != null?<>
                     <div className="Order-details-container">
                         <div className="Brand-logo">
                             <h1>ARA <FaOpencart></FaOpencart></h1>
@@ -145,24 +145,35 @@ export default function DeliveryAddressForm() {
                         <hr />
                         <div className="delivery-message">
                             <h5>
-                                <span style={{color:"#4BB543"}}><SiTicktick />&nbsp;</span>
-                                Thank you for your order, {`${OrderDetails.firstname} ${OrderDetails.lastname}`}
+                                <p>
+                                    <span style={{color:"#4BB543"}}><SiTicktick />&nbsp;</span>
+                                    Thank you for your order, {`${OrderDetails.firstname} ${OrderDetails.lastname}`}
+                                </p>
+                                <p style={{fontSize:"x-small",backgroundColor:"#c6c6c6",width:"max-content",borderRadius:"5px",padding:"5px 5px"}}>
+                                    Order number: {OrderDetails._id}
+                                </p>
                             </h5>
                         </div>
                         <hr />
-                        <div className="shipping-details">
-                            <div><p><strong>{OrderDetails.or}</strong></p></div>
-                            <h6><strong>Shipping info</strong></h6>
-                            <small>{`${OrderDetails.firstname} ${OrderDetails.lastname}`},</small><br />
-                            <small>{OrderDetails.phonenumber},</small><br />
-                            <small>{OrderDetails.address},</small>&nbsp;
-                            <small>{OrderDetails.city},</small><br />
-                            <small>{OrderDetails.state},</small>&nbsp;
-                            <small>{OrderDetails.zipcode}.</small><br />
+                        <div className="OrderDetails">
+                            <div className="shippingAdd-details">
+                                <h6 style={{textDecoration:"underline"}}><strong>Shipping info</strong></h6>
+                                <small>{`${OrderDetails.firstname} ${OrderDetails.lastname}`},</small><br />
+                                <small>{OrderDetails.phonenumber},</small><br />
+                                <small>{OrderDetails.address},</small>&nbsp;
+                                <small>{OrderDetails.city},</small><br />
+                                <small>{OrderDetails.state},</small>&nbsp;
+                                <small>{OrderDetails.zipcode}.</small><br />
+                            </div>
+                            <div className="total-details">
+                                
+                            </div>
                         </div>
+                        <hr />
+                        <h6 style={{textDecoration:"underline"}}><strong><u>Items</u></strong></h6>
                         <div className="products">
-                            <p><strong>Items</strong></p>
-                            {OrderDetails.OrderItems.products.length>0?
+                            {/* Items */}
+                            {OrderDetails.OrderItems.products && OrderDetails.OrderItems.products.length>0?
                             OrderDetails.OrderItems.products.map(product=>
                                 <div className="product">
                                 <p className="arrival-date"><small>Arraives at 18 May</small></p>

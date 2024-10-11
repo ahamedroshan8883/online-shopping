@@ -23,7 +23,7 @@ const AddCartItem_IncQun = async (product) => {
             // Something else happened while setting up the request
             console.log('Error setting up request: ', error.message);
         }
-        return error;
+        throw error;
     }
 }
 const getCart = async(user)=>{

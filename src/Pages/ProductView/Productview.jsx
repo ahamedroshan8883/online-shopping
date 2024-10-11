@@ -19,12 +19,18 @@ export default function Productviews(){
     let[product,setProduct] = useState(null);
     let[quantity,setQuantity] =useState(1);
     const handleAddcart = async(product)=>{
+      const productWithFullDetails = {
+        ...product,
+        selectedSize,
+        quantity,
+        user:email
+      }
       console.log(product);
       try{
-        const response = await cartServices.AddCartItem_IncQun(product);
+        const response = await cartServices.AddCartItem_IncQun(productWithFullDetails);
         console.log(response);
-        console.log(product);
-        if(response.status==200){
+        console.log(productWithFullDetails);
+        if(response.status===200){
           toast.success(response.data);
         }
       }catch(error){
@@ -111,7 +117,7 @@ export default function Productviews(){
                         <Button variant="secondary" onClick={()=>setQuantity(quantity+1)}>+</Button>
             </ButtonGroup>
       </div>
-      {product.category=="jewelery"?'':
+      {product.category==="jewelery"?'':
       <div className="product-size-select">
       <strong>Select size: {!selectedSize?<span><small style={{color:"red"}}>Select a size</small></span>:''}</strong>&nbsp;&nbsp;
       <ButtonGroup className="product-size">
@@ -126,8 +132,8 @@ export default function Productviews(){
         ))}
       </ButtonGroup>
     </div>}<br/>
-      <Button variant="warning" disabled={!selectedSize && !product.category=="jewelery"} onClick={()=>handleAddcart({...product,selectedSize,user:email})}>Add to cart &nbsp;<FaShoppingCart/></Button>&nbsp;&nbsp;
-      <Button  disabled={!selectedSize && !product.category=="jewelery"} onClick={()=>handlecheckOut({...product,selectedSize,user:email,quantity})}>Buy now&nbsp;<IoBagCheck/></Button>
+      <Button variant="warning" disabled={!selectedSize || !product.category==="jewelery"} onClick={()=>handleAddcart({...product,selectedSize,user:email})}>Add to cart &nbsp;<FaShoppingCart/></Button>&nbsp;&nbsp;
+      <Button  disabled={!selectedSize || !product.category==="jewelery"} onClick={()=>handlecheckOut(product)}>Buy now&nbsp;<IoBagCheck/></Button>
     </div>
   </div> :''}  
   </div>
