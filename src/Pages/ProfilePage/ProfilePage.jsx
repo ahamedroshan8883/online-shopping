@@ -12,7 +12,7 @@ import maleImg from "../../assets/male.jpg"
 import femaleImg from "../../assets/female.jpg"
 import Swal from 'sweetalert2';
 
-export default function ProfilePage() {
+export default function ProfilePage({setUsername}) {
   let { email } = useParams();
   
   // Default profile details state
@@ -33,29 +33,47 @@ export default function ProfilePage() {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault(); // Prevent form refresh
     const isValid = Object.values(profileDet).every(input => input !== '' && input !== null); // Validate inputs
-
-    if (isValid) {
-      try {
-        const response = await userServices.EditProfile(email, profileDet); // Call edit profile service
-        console.log(response);
-        toast.success(response.data);
-        setEditable({
-          user: false,
-          mobile: false,
-          gender: false
-        });
-
-      } catch (error) {
-        console.log(error);
-        toast.error("Network Error");
+    const helper = async()=>{
+      if (isValid) {
+        try {
+          const response = await userServices.EditProfile(email, profileDet); // Call edit profile service
+          console.log(response);
+          toast.success(response.data);
+          setEditable({
+            user: false,
+            mobile: false,
+            gender: false
+          });
+  
+        } catch (error) {
+          console.log(error);
+          toast.error("Network Error");
+        }
+      } else {
+        console.log("Form validation failed.");
       }
-    } else {
-      console.log("Form validation failed.");
-    }
+    } 
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        helper();
+        setUsername(profileDet.username);
+
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
+
   const fetchProfile = async(email)=>{
     try{
       const response = await userServices.getProfileByemail(email);
@@ -125,7 +143,7 @@ export default function ProfilePage() {
     backgroundColor: 'rgba(251, 192, 147,0.5)',  // Semi-transparent overlay
     zIndex: 1
   };
-  console.log(profileDet);
+  // console.log(profileDet);
   
   useEffect(()=>{
     fetchProfile(email);

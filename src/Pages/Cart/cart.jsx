@@ -137,7 +137,7 @@ export default function Cart() {
                                                         </ButtonGroup>
                                                     </div>
                                                     <div className="product-totalprice">
-                                                        ${Number(item.quantity) * Number(item.price)}
+                                                        ${(Number(item.quantity) * Number(item.price)).toFixed(2)}
                                                     </div>
                                                 </div>
                                             )}

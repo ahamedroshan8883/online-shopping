@@ -29,13 +29,12 @@
     font-weight: 600;
 }
 .ShippingForm-con{
-    
     border-radius: 5px;
     box-sizing: border-box;
     padding: 1.5rem 1rem;
     background-color: #f5f7eb;
     width: 500px;
-    /* height: 440px; */
+    margin: 2rem auto;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 .button-con{

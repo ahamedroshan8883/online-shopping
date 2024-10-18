@@ -132,8 +132,8 @@ export default function Productviews(){
         ))}
       </ButtonGroup>
     </div>}<br/>
-      <Button variant="warning" disabled={!selectedSize || !product.category==="jewelery"} onClick={()=>handleAddcart({...product,selectedSize,user:email})}>Add to cart &nbsp;<FaShoppingCart/></Button>&nbsp;&nbsp;
-      <Button  disabled={!selectedSize || !product.category==="jewelery"} onClick={()=>handlecheckOut(product)}>Buy now&nbsp;<IoBagCheck/></Button>
+      <Button variant="warning" disabled={product.category!="jewelery"? !selectedSize :selectedSize } onClick={()=>handleAddcart({...product,selectedSize,user:email})}>Add to cart &nbsp;<FaShoppingCart/></Button>&nbsp;&nbsp;
+      <Button  disabled={product.category!="jewelery"? !selectedSize :selectedSize } onClick={()=>handlecheckOut(product)}>Buy now&nbsp;<IoBagCheck/></Button>
     </div>
   </div> :''}  
   </div>

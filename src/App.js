@@ -38,7 +38,7 @@ function App() {
         <Route path="/Cart" element={<Cart></Cart>}></Route>
         <Route path="/Shipping" element={<DeliveryAddressFrom></DeliveryAddressFrom>}></Route>
         <Route path="/delivery" element={<OrderAcceptedPage></OrderAcceptedPage>}></Route>
-        <Route path="/profile/:email" element={<ProfilePage></ProfilePage>}></Route>
+        <Route path="/profile/:email" element={<ProfilePage setUsername={setUsername}></ProfilePage>}></Route>
         <Route path="/orders/:email" element={<Orders></Orders>}></Route>
       </Routes>
     </BrowserRouter>
