@@ -61,6 +61,8 @@ export default function Cart() {
         if (cart) {
             setProducts(cart.products || []);
             setCart(cart);
+            console.log(cart);
+            
         }
     }, [cart]);
 
