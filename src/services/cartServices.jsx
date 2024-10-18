@@ -1,7 +1,7 @@
 import axios from "axios";
 const AddCartItem = async (product) => {
-    try {
-        const response = await axios.post('http://localhost:8081/ARA/AddCartItem', product, {
+    try {        
+        const response = await axios.post('https://backend-node-2-uhkv.onrender.com/ARA/AddCartItem', product, {
             // Treat any status code outside of 200-299 as an error
             validateStatus: function (status) {
                 return status >= 200 && status < 307 ; // default behavior
